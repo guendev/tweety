@@ -1,0 +1,52 @@
+body{
+    background: var(--dark-color);
+}
+
+.bg-dark-1{
+    background: var(--dark-color);
+}
+
+.bg-dark-2{
+    background: var(--dark-color-2);
+}
+.hover-bg:hover{
+    background: #173a53;
+}
+.g_thumb {
+    width: 50px;
+    height: 50px;
+}
+.g_thumb img{
+    object-fit: cover;
+}
+.tweet-box .form-action button{
+    height: 40px;
+}
+.tweet-attr .tweet-img .g_thumb{
+    height: 250px;
+}
+.profile-cover .g_thumb {
+    width: auto;
+    height: 200px;
+}
+.profile-meta .profile-avatar {
+    position: absolute;
+    bottom: 0;
+    width: 134px;
+    height: 134px;
+    box-sizing: border-box;
+    border: 5px solid transparent;
+    background: var(--dark-color);
+}
+span.follower-item {
+    width: 23px;
+    height: 23px;
+    display: inline-flex;
+    border: 2px solid transparent;
+    background: var(--dark-color);
+}
+.profile-action:before {
+    content: '';
+    margin-left: auto;
+}
+
