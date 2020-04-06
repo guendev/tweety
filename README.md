@@ -10,6 +10,7 @@ I learn Laravel and VueJS from Laracast. This is Final Project of lession (basic
 - ...
 
 Because this is first project so...i will have many bug 🤪
+The project is still in progress, I will try to finish soon ...
 
 ## Learning Laravel vs VueJS
 
