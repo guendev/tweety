@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function path($appent = '')
     {
-        $path = route('profile', $this->name);
+        $path = route('User', $this->name);
         return $appent ? "{$path}/{$appent}" : $path;
 
     }

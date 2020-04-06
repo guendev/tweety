@@ -6,8 +6,12 @@
         @if(auth())
             @include('layouts.home.tweetbox')
         @endif
-        @include('layouts.home.newsfeed')
+        {{--@include('layouts.home.newsfeed')--}}
+        <new-feeds
+            tweets="{{ json_encode($tweets_data) }}"
+        ></new-feeds>
     </div>
 </div>
 @endsection
+
 

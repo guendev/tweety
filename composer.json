@@ -15,7 +15,9 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "twbs/bootstrap": "4.4.1"
+        "twbs/bootstrap": "4.4.1",
+      "ext-mongodb": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

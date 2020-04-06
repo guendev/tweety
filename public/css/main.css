@@ -38,6 +38,12 @@ body{
     border: 5px solid transparent;
     background: var(--dark-color);
 }
+@media screen and (max-width: 767px) {
+    .profile-meta .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
 span.follower-item {
     width: 23px;
     height: 23px;
@@ -49,4 +55,6 @@ span.follower-item {
     content: '';
     margin-left: auto;
 }
-
+div#app-frontend {
+    max-width: 1250px;
+}

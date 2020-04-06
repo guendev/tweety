@@ -1,9 +1,15 @@
+import 'jquery'
+import './bootstrap';
 
+import router from "./routes";
+import Vue from "vue";
 
-require('./bootstrap');
-
-window.Vue = require('vue');
-
+Vue.component('tweet-form', require('./components/Forms/Tweet').default);
+Vue.component('profile-action', require('./components/Profile/ProfileAction').default);
+Vue.component('search', require('./components/include/search').default);
+Vue.component('tweet-detail', require('./components/Tweet/TweetDetail').default);
+Vue.component('new-feeds', require('./components/Home/NewsFeed').default);
 const app = new Vue({
-    el: '#app',
+    el: '#app-frontend',
+    router
 });

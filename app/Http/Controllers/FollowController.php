@@ -12,6 +12,8 @@ class FollowController extends Controller
         auth()
             ->user()
             ->followAction($user);
-        return back();
+        return [
+            'isfollow' => current_user()->isFollowing($user)
+        ];
     }
 }

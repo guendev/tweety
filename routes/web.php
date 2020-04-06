@@ -3,21 +3,27 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::middleware('auth')->group(function (){
-    Route::prefix('/tweets')->group(function (){
+
+    Route::prefix('')->group(function (){
         Route::get('', 'TweetController@index')->name('tweets');
-        Route::post('/{id}','TweetController@tweet')->name('tweet');
+        Route::get('getmore', 'TweetController@newsfeed');
+        Route::post('tweet/{id}','TweetController@tweet')->name('tweet');
     });
 
-    Route::prefix('/profile')->group(function (){
+    Route::prefix('/tweet')->group(function (){
+        Route::get('/authorinfo', 'TweetController@authorinfo');
+    });
+
+
+    Route::prefix('/tweets')->group(function (){
+        Route::get('/loadmore','ProfileController@infinity');
         Route::prefix('/{user}')->group(function (){
-            Route::get('','ProfileController@index')->name('profile');
-            Route::post('/follow','FollowController@action')->name('follow');
+            Route::get('','ProfileController@index')->name('User');
             Route::get('/edit','ProfileController@edit');
         });
     });
 
-});
+Route::post('/{user}/follow','FollowController@action')->name('follow');
 
 
 

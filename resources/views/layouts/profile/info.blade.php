@@ -11,13 +11,20 @@
             <div class="row">
                 <div class="col-4 position-relative">
                     <div class="profile-avatar rounded-circle overflow-hidden">
-                        <a href="{{ route('profile', $user) }}">
+                        <a href="{{ route('User', $user) }}">
                             <img class="img_100" alt="{{ $user->name }}" src="{{ $user->avatar }}">
                         </a>
                     </div>
                 </div>
+
                 <div class="col">
-                    <div class="profile-action text-right mt-2 d-flex">
+                    <profile-action
+                        profile_data="{{ $user }}"
+                        user_can="@can('edit', $user) {{ true }} @endcan"
+                        is_following="{{ current_user() ? current_user()->isFollowing($user) : '' }}"
+                    ></profile-action>
+
+                    {{--<div class="profile-action text-right mt-2 d-flex">
                         @can('edit', $user)
                             <a
                                 href="{{ $user->path('edit') }}"
@@ -31,7 +38,7 @@
                         @endcan
 
                         <x-follow-button :user="$user"></x-follow-button>
-                    </div>
+                    </div>--}}
                 </div>
                 @include('layouts.profile.meta')
             </div>

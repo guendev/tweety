@@ -13,7 +13,7 @@
 <body>
 <div class="content mt12">
     @include('include.svg')
-    <div class="container app-frontend">
+    <div class="container" id="app-frontend">
         <div class="row">
             @include('layouts.sidebar.left')
             @yield('content')
@@ -21,5 +21,7 @@
         </div>
     </div>
 </div>
+<script>window.__user_id__ = '{{ current_user() ? current_user()->id : 0 }}'</script>
+<script src="/js/app.js"></script>
 </body>
 </html>

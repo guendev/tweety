@@ -3,12 +3,12 @@
     <div class="news-feed-item d-flex bg-dark-1 my-2 pt-2">
             <div class="user-meta col-auto">
                 <div class="g_thumb circle">
-                    <a href="{{ route('profile', $tweet->author) }}"><img src="{{ $tweet->author->avatar }}"></a>
+                    <a href="{{ route('User', $tweet->author) }}"><img src="{{ $tweet->author->avatar }}"></a>
                 </div>
             </div>
             <div class="tweet-box col w-auto pl-0">
                 <div class="tweet-title">
-                    <h5><a class="text-white fs16" href="{{ route('profile', $tweet->author) }}">{{$tweet->author->name}}</a><a class="text-muted fs14 ml4"><i class="mr4">.</i>{{$tweet->created_at->format('d-m-Y')}}</a></h5>
+                    <h5><a class="text-white fs16" href="{{ route('User', $tweet->author) }}">{{$tweet->author->name}}</a><a class="text-muted fs14 ml4"><i class="mr4">.</i>{{$tweet->created_at->format('d-m-Y')}}</a></h5>
                 </div>
                 <div class="tweet-content">
                     <div class="tweet-des text-white">
