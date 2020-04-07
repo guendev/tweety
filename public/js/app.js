@@ -2087,6 +2087,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2109,7 +2116,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     formatTime: function formatTime($time) {
-      return moment__WEBPACK_IMPORTED_MODULE_0___default()($time).format('dd-mm');
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()($time).format("MM-DD-YYYY");
     },
     infiniteHandler: function infiniteHandler($state) {
       var _this = this;
@@ -2223,6 +2230,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56160,7 +56173,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("a", { staticClass: "text-muted fs14 ml4" }, [
-                    _c("i", { staticClass: "mr4 fs14" }, [
+                    _c("i", { staticClass: "mr4 fs12" }, [
                       _vm._v(
                         ". " + _vm._s(_vm.formatTime(tweet.created_at)) + " "
                       )
@@ -56175,6 +56188,26 @@ var render = function() {
                     "\n                        " +
                       _vm._s(tweet.content) +
                       "\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "tweet-hashtag" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "list-hashtag nav" },
+                    _vm._l(tweet.tags, function(tag, index) {
+                      return _c("li", { key: index }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "hashtag-link mr4",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v("#" + _vm._s(tag.tag.tag))]
+                        )
+                      ])
+                    }),
+                    0
                   )
                 ]),
                 _vm._v(" "),
@@ -56386,14 +56419,12 @@ var render = function() {
           "div",
           {
             staticClass: "news-feed-item d-flex bg-dark-1 my-2 pt-2",
-            class: "tweet-id-" + tweet.id
+            class: "tweet-id-" + tweet.id + " author-id-" + tweet.author_id
           },
           [
             _c("div", { staticClass: "user-meta col-auto" }, [
               _c("div", { staticClass: "g_thumb circle" }, [
-                _c("img", {
-                  attrs: { src: _vm.author.avatar, alt: _vm.author.name }
-                })
+                _c("img", { attrs: { src: _vm.author.avatar } })
               ])
             ]),
             _vm._v(" "),
@@ -56402,12 +56433,15 @@ var render = function() {
                 _c("h5", [
                   _c(
                     "a",
-                    { staticClass: "text-white fs16", attrs: { href: "" } },
+                    {
+                      staticClass: "text-white fs16",
+                      attrs: { href: "tweets/" + tweet.author_name }
+                    },
                     [_vm._v(_vm._s(_vm.author.name))]
                   ),
                   _vm._v(" "),
                   _c("a", { staticClass: "text-muted fs14 ml4" }, [
-                    _c("i", { staticClass: "mr4 fs14" }, [
+                    _c("i", { staticClass: "mr4 fs12" }, [
                       _vm._v(
                         ". " + _vm._s(_vm.formatTime(tweet.created_at)) + " "
                       )
@@ -56419,9 +56453,29 @@ var render = function() {
               _c("div", { staticClass: "tweet-content" }, [
                 _c("div", { staticClass: "tweet-des text-white" }, [
                   _vm._v(
-                    "\n                        " +
+                    "\n                    " +
                       _vm._s(tweet.content) +
-                      "\n                    "
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "tweet-hashtag" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "list-hashtag nav" },
+                    _vm._l(tweet.tags, function(tag, index) {
+                      return _c("li", { key: index }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "hashtag-link mr4",
+                            attrs: { href: "#" }
+                          },
+                          [_vm._v("#" + _vm._s(tag.tag.tag))]
+                        )
+                      ])
+                    }),
+                    0
                   )
                 ]),
                 _vm._v(" "),

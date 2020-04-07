@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+
+
 <div class="content mt12">
     @include('include.svg')
     <div class="container" id="app-frontend">
@@ -21,6 +23,9 @@
         </div>
     </div>
 </div>
+
+
+
 <script>window.__user_id__ = '{{ current_user() ? current_user()->id : 0 }}'</script>
 <script src="/js/app.js"></script>
 </body>

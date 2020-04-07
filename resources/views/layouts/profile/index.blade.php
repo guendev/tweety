@@ -5,7 +5,7 @@
         <div class="site-content">
          @include('layouts.profile.info')
             <tweet-detail
-                tweets="{{ $user->tweets()->orderBy("created_at", "DESC")->take(5)->get() }}"
+                tweets="{{ json_encode($profile_data) }}"
                 user="{{ $user }}"
             ></tweet-detail>
         </div>

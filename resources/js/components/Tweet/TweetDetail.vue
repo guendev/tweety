@@ -2,74 +2,80 @@
     <div class="tweet-box position-relative">
         <div
             class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
-             :class="'tweet-id-'+tweet.id"
+            :class="'tweet-id-'+tweet.id+' author-id-'+tweet.author_id"
             v-for="(tweet, index) in tweetsData"
         >
+            <div class="user-meta col-auto">
+                <div class="g_thumb circle">
+                    <img :src="author.avatar">
+                </div>
+            </div>
 
-                <div class="user-meta col-auto">
-                    <div class="g_thumb circle">
-                        <img :src="author.avatar" :alt="author.name">
-                    </div>
+            <div class="tweet-box col w-auto pl-0">
+                <div class="tweet-title">
+                    <h5>
+                        <a class="text-white fs16" :href="'tweets/'+tweet.author_name">{{ author.name }}</a>
+                        <a class="text-muted fs14 ml4"><i class="mr4 fs12">. {{ formatTime(tweet.created_at) }} </i></a>
+                    </h5>
                 </div>
 
-                <div class="tweet-box col w-auto pl-0">
-                    <div class="tweet-title">
-                        <h5>
-                            <a class="text-white fs16" href="">{{ author.name }}</a>
-                            <a class="text-muted fs14 ml4"><i class="mr4 fs14">. {{ formatTime(tweet.created_at) }} </i></a>
-                        </h5>
+                <div class="tweet-content">
+                    <div class="tweet-des text-white">
+                        {{ tweet.content }}
+                    </div>
+                    <div class="tweet-hashtag">
+                        <ul class="list-hashtag nav">
+                            <li v-for="( tag , index) in tweet.tags" :key="index">
+                                <a href="#" class="hashtag-link mr4">#{{ tag.tag.tag }}</a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="tweet-content">
-                        <div class="tweet-des text-white">
-                            {{ tweet.content }}
+                    <!-- <div class="tweet-attr mt-2">
+                         <div class="tweet-img">
+                             <div class="g_thumb w-100 br10">
+                                 <img src="/img/tweet/img-1.jpeg">
+                             </div>
+                         </div>
+                     </div>-->
+
+                    <div class="tweet-action-group fs16 mt-2 d-flex">
+                        <div class="w-25">
+                            <a href="" class="tweet-action-link br20_hover text-muted">
+                                <svg>
+                                    <use xlink:href="#i-comment"></use>
+                                </svg>
+                                <span class="count fs14">{{ tweet.count_comment }}</span>
+                            </a>
                         </div>
-
-                       <!-- <div class="tweet-attr mt-2">
-                            <div class="tweet-img">
-                                <div class="g_thumb w-100 br10">
-                                    <img src="/img/tweet/img-1.jpeg">
-                                </div>
-                            </div>
-                        </div>-->
-
-                        <div class="tweet-action-group fs16 mt-2 d-flex">
-                            <div class="w-25">
-                                <a href="" class="tweet-action-link br20_hover text-muted">
-                                    <svg>
-                                        <use xlink:href="#i-comment"></use>
-                                    </svg>
-                                    <span class="count fs14">{{ tweet.count_comment }}</span>
-                                </a>
-                            </div>
-                            <div class="w-25">
-                                <a href="" class="tweet-action-link br20_hover text-muted">
-                                    <svg>
-                                        <use xlink:href="#i-retweet"></use>
-                                    </svg>
-                                    <span class="count fs14">{{ tweet.count_retweet }}</span>
-                                </a>
-                            </div>
-                            <div class="w-25">
-                                <a href="" class="tweet-action-link br20_hover text-muted">
-                                    <svg>
-                                        <use xlink:href="#i-love"></use>
-                                    </svg>
-                                    <span class="count fs14">{{ tweet.count_like }}</span>
-                                </a>
-                            </div>
-                            <div class="w-25">
-                                <a href="" class="tweet-action-link br20_hover text-muted">
-                                    <svg>
-                                        <use xlink:href="#i-share"></use>
-                                    </svg>
-                                    <span class="count fs14">{{ tweet.count_share }}</span>
-                                </a>
-                            </div>
+                        <div class="w-25">
+                            <a href="" class="tweet-action-link br20_hover text-muted">
+                                <svg>
+                                    <use xlink:href="#i-retweet"></use>
+                                </svg>
+                                <span class="count fs14">{{ tweet.count_retweet }}</span>
+                            </a>
                         </div>
-
+                        <div class="w-25">
+                            <a href="" class="tweet-action-link br20_hover text-muted">
+                                <svg>
+                                    <use xlink:href="#i-love"></use>
+                                </svg>
+                                <span class="count fs14">{{ tweet.count_like }}</span>
+                            </a>
+                        </div>
+                        <div class="w-25">
+                            <a href="" class="tweet-action-link br20_hover text-muted">
+                                <svg>
+                                    <use xlink:href="#i-share"></use>
+                                </svg>
+                                <span class="count fs14">{{ tweet.count_share }}</span>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
+            </div>
         </div>
         <infinite-loading
             v-if="is_loading"

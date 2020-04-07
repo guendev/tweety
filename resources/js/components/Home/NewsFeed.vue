@@ -15,13 +15,20 @@
                     <div class="tweet-title">
                         <h5>
                             <a class="text-white fs16" :href="'tweets/'+tweet.author_name">{{ tweet.author_name }}</a>
-                            <a class="text-muted fs14 ml4"><i class="mr4 fs14">. {{ formatTime(tweet.created_at) }} </i></a>
+                            <a class="text-muted fs14 ml4"><i class="mr4 fs12">. {{ formatTime(tweet.created_at) }} </i></a>
                         </h5>
                     </div>
 
                     <div class="tweet-content">
                         <div class="tweet-des text-white">
                             {{ tweet.content }}
+                        </div>
+                        <div class="tweet-hashtag">
+                            <ul class="list-hashtag nav">
+                                <li v-for="( tag , index) in tweet.tags" :key="index">
+                                    <a href="#" class="hashtag-link mr4">#{{ tag.tag.tag }}</a>
+                                </li>
+                            </ul>
                         </div>
 
                        <!-- <div class="tweet-attr mt-2">
@@ -106,10 +113,8 @@
         },
         methods: {
            formatTime($time){
-               return moment($time).format('dd-mm')
+               return moment($time).format("MM-DD-YYYY")
            },
-
-
             infiniteHandler($state) {
                 axios.get('/getmore', {
                     params: {

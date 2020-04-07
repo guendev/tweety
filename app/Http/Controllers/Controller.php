@@ -26,4 +26,35 @@ class Controller extends BaseController
             'data' => $data
         ]);
     }
+
+    /**
+     * @param $tweets
+     * @return array
+     */
+    public function getNewsFeed( $tweets ): array
+    {
+        $tweets_data = [];
+        foreach ($tweets as $tweet) {
+            $tweet_tag = [];
+            if (isset($tweet->tags)) {
+                foreach ($tweet->tags as $tag) {
+                    $tweet_tag[] = [
+                        'tag' => $tag->tag->tag
+                    ];
+                }
+            }
+            $tweets_data[] = [
+                'id' => $tweet->id,
+                'content' => $tweet->content,
+                'tags' => $tweet->tags,
+                'count_like' => $tweet->count_like,
+                'count_comment' => $tweet->count_comment,
+                'count_share' => $tweet->count_share,
+                'author_id' => $tweet->author->id,
+                'author_name' => $tweet->author->name,
+                'author_avatar' => $tweet->author->avatar,
+            ];
+        }
+        return $tweets_data;
+    }
 }
