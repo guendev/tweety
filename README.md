@@ -3,13 +3,13 @@
 
 ## Project
 
-I learn Laravel and VueJS from Laracast. This is Final Project of lession (basic)....LMAO. 
+I learn Laravel and VueJS from Laracast. This is the final project of the course (basic)....LMAO. 
 
 - Responsive
 - AJAX
 - ...
 
-Because this is first project so...i will have many bug 🤪
+Because this is the first project so...i will have many bug 🤪
 
 ## Learning Laravel vs VueJS
 
