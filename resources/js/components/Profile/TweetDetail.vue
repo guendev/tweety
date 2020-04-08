@@ -7,14 +7,14 @@
         >
             <div class="user-meta col-auto">
                 <div class="g_thumb circle">
-                    <img :src="author.avatar">
+                    <img :src="user_data.avatar">
                 </div>
             </div>
 
             <div class="tweet-box col w-auto pl-0">
                 <div class="tweet-title">
                     <h5>
-                        <a class="text-white fs16" :href="'tweets/'+tweet.author_name">{{ author.name }}</a>
+                        <a class="text-white fs16" :href="'/@'+tweet.author_user_name">{{ user_data.name }}</a>
                         <a class="text-muted fs14 ml4"><i class="mr4 fs12">. {{ formatTime(tweet.created_at) }} </i></a>
                     </h5>
                 </div>
@@ -103,10 +103,6 @@
             return {
                 tweetsData: JSON.parse(this.tweets),
                 user_data: JSON.parse(this.user),
-                author: {
-                    name: $('.profile-info-item h4').text(),
-                    avatar: $('.profile-avatar img').attr('src'),
-                },
                 page: 1,
                 is_loading: true
             }

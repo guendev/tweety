@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Auth;
         Route::get('/authorinfo', 'TweetController@authorinfo');
     });
 
-    Route::middleware(['auth'])->prefix('/tweets')->group(function (){
-        Route::get('/loadmore','ProfileController@infinity');
-        Route::prefix('/{user}')->group(function (){
+    Route::middleware(['auth'])->group(function (){
+        Route::get('/tweets/loadmore','ProfileController@infinity');
+        Route::prefix('@{user}')->group(function (){
             Route::get('','ProfileController@index')->name('User');
-            Route::get('/edit','ProfileController@edit');
+            Route::patch('/edit', 'ProfileController@update')->name('updateProfile');
         });
+        Route::get('/get-user','ProfileController@getUserInfo');
+        Route::post('/update-profile', 'ProfileController@update');
     });
 
     Route::middleware(['auth'])->post('/{user}/follow','FollowController@action')->name('follow');

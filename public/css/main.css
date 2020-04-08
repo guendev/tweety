@@ -58,3 +58,9 @@ span.follower-item {
 div#app-frontend {
     max-width: 1250px;
 }
+
+
+
+.reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
+    background: #14202a;
+}

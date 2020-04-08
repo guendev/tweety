@@ -7,14 +7,18 @@ use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Http\Controllers\TweetController;
 
 class ProfileController extends Controller
 {
     public function index(User $user){
         $data = $this->getProfileData($user->id, 5, 0);
         $profile_data = $this->getNewsFeed($data);
-        return view('layouts.profile.index', compact('user', 'profile_data'));
+        $follow_data=[];
+        $follow_data['count_following'] = $user->following()->count();
+        $follow_data['count_follower'] = $user->follower()->count();
+        $follow_data['follow'] = $user->sameFollow();
+        //return ddd($follow_data);
+        return view('layouts.profile.index', compact('user', 'profile_data', 'follow_data'));
     }
 
     public function infinity(Request $request)
@@ -51,5 +55,21 @@ class ProfileController extends Controller
             ->skip($limit * $page)
             ->take($limit)
             ->get();
+    }
+
+    public function getUserInfo(Request $request){
+        $input = $request->all();
+        return User::find($input['user_id']);
+    }
+
+    public function update(Request $request)
+    {
+        $input = $request['params']['data'];
+
+        if (current_user()->id == $input['id']){
+            current_user()->update($input);
+        }
+
+        return $this->responseSuccess('', current_user());
     }
 }

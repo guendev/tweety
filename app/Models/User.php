@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'story', 'avatar', 'sex', 'local', 'user_name'
     ];
 
     /**
@@ -36,7 +36,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     public function timeline()
     {
         return Tweet::orderBy('updated_at', 'DESC')
@@ -60,7 +59,7 @@ class User extends Authenticatable
 
     public function getRouteKeyName()
     {
-        return 'name';
+        return 'user_name';
     }
 
     public function tweetattrs(){
@@ -70,10 +69,15 @@ class User extends Authenticatable
         );
     }
 
+    public function getData(User $user_id)
+    {
+        return $user_id->user();
+    }
+
 
     public function path($appent = '')
     {
-        $path = route('User', $this->name);
+        $path = route('User', $this->user_name);
         return $appent ? "{$path}/{$appent}" : $path;
 
     }

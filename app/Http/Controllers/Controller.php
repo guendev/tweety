@@ -51,6 +51,7 @@ class Controller extends BaseController
                 'count_comment' => $tweet->count_comment,
                 'count_share' => $tweet->count_share,
                 'author_id' => $tweet->author->id,
+                'author_user_name' => $tweet->author->user_name,
                 'author_name' => $tweet->author->name,
                 'author_avatar' => $tweet->author->avatar,
             ];

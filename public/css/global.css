@@ -14,6 +14,10 @@ svg {
     stroke: currentColor;
     fill: currentColor;
 }
+.hide {
+    position: absolute;
+    clip: rect(0 0 0 0);
+}
 
 .img_reponsive{
     width: 100%;
@@ -32,6 +36,11 @@ input, input:focus, textarea, textarea:focus {
     background: transparent;
     border: unset;
     outline: none;
+}
+.reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
+    background-color: unset;
+    border: unset;
+    box-shadow: unset;
 }
 .oh {
     overflow: hidden;
@@ -362,3 +371,29 @@ input, input:focus, textarea, textarea:focus {
 .bg-black {
     background: black;
 }
+/*Width & Heigh */
+.w18{
+    width: 18px;
+}
+.h18{
+    height: 18px;
+}
+.w20{
+    width: 20px;
+}
+.h20{
+    height: 20px;
+}
+.w32{
+    width: 32px;
+}
+.h32{
+    height: 32px
+}
+.w100{
+    width: 100px;
+}
+.h100{
+    height: 100px;
+}
+/*Left Right Top Bottom*/

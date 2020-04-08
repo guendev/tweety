@@ -23,22 +23,6 @@
                         user_can="@can('edit', $user) {{ true }} @endcan"
                         is_following="{{ current_user() ? current_user()->isFollowing($user) : '' }}"
                     ></profile-action>
-
-                    {{--<div class="profile-action text-right mt-2 d-flex">
-                        @can('edit', $user)
-                            <a
-                                href="{{ $user->path('edit') }}"
-                            >
-                                @csrf
-                                <button
-                                    class="btn btn-outline-primary font-weight-bold text-primary br30"
-                                >Edit Profile</button>
-
-                            </a>
-                        @endcan
-
-                        <x-follow-button :user="$user"></x-follow-button>
-                    </div>--}}
                 </div>
                 @include('layouts.profile.meta')
             </div>

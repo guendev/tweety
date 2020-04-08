@@ -13,11 +13,15 @@ trait Followable
             ->whereIn("user_follow_id", $this
                 ->following()
                 ->pluck('user_follow_id'));
-
-        return [
-            'avatars' => $query->take(3)->get(),
-            'count' => $query->count()
-        ];
+        $avatars = $query->take(3)->get();
+        $data = [];
+        foreach ($avatars as $avatar){
+            $data[] = [
+                'avatar' => $avatar->following->avatar,
+                'name'  => $avatar->following->name
+            ];
+        }
+        return $data;
     }
 
 

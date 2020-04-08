@@ -14,7 +14,7 @@
                 <div class="tweet-box col w-auto pl-0">
                     <div class="tweet-title">
                         <h5>
-                            <a class="text-white fs16" :href="'tweets/'+tweet.author_name">{{ tweet.author_name }}</a>
+                            <a class="text-white fs16" :href="'/@'+tweet.author_user_name">{{ tweet.author_name }}</a>
                             <a class="text-muted fs14 ml4"><i class="mr4 fs12">. {{ formatTime(tweet.created_at) }} </i></a>
                         </h5>
                     </div>
@@ -93,6 +93,7 @@
 <script>
     import moment from 'moment';
     import InfiniteLoading from 'vue-infinite-loading';
+    import routes from "../../routes";
     export default {
        name: "NewsFeed",
         props:['tweets'],
@@ -116,7 +117,7 @@
                return moment($time).format("MM-DD-YYYY")
            },
             infiniteHandler($state) {
-                axios.get('/getmore', {
+                axios.get( '/getmore', {
                     params: {
                         page: this.page,
                     },
