@@ -139,7 +139,10 @@
                         >Update Your Info</button>
                     </form>
 
-                    <form class="col-12 mt-3">
+                    <form
+                        class="col-12 mt-3"
+                        @submit.prevent="submitPassword()"
+                    >
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label class="text-light" for="oldpassword">Old Password</label>
@@ -147,6 +150,7 @@
                                     type="password"
                                     class="form-control reset-form-control bg-dark-1"
                                     id="oldpassword"
+                                    v-model="formPass.oldPass"
                                     required
                                 >
                             </div>
@@ -156,6 +160,8 @@
                                     type="password"
                                     class="form-control reset-form-control bg-dark-1"
                                     id="password"
+                                    v-model="formPass.newPass"
+                                    required
                                 >
                             </div>
                             <div class="col-md-12 mb-3">
@@ -164,6 +170,8 @@
                                     type="password"
                                     class="form-control reset-form-control bg-dark-1"
                                     id="repassword"
+                                    v-model="formPass.rePass"
+                                    required
                                 >
                             </div>
                         </div>
@@ -209,7 +217,8 @@
                 },
                 formPass: new Form( {
                     oldPass: '',
-                    newPass:''
+                    newPass:'',
+                    rePass: '',
                 })
             }
         },
@@ -228,7 +237,13 @@
                   this.user_data = data.data;
                   this.formData = data.data;
               })
-          }
+          },
+            submitPassword(){
+              this.formPass.post('changePass')
+                  .then(response => {
+                  console.log(response)
+              })
+            }
         },
 
 

@@ -4,6 +4,7 @@
     <div class="col-lg-6 col-md-7 col-sm-9 col-12 bg-dark-2 px-1">
         <div class="site-content">
          {{--@include('layouts.profile.info')--}}
+            <header-bar></header-bar>
             <profile-detail
                 user="{{ json_encode($user) }}"
                 follow="{{ json_encode($follow_data) }}"

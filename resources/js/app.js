@@ -11,6 +11,8 @@ Vue.component('tweet-detail', require('./components/Profile/TweetDetail').defaul
 Vue.component('new-feeds', require('./components/Home/NewsFeed').default);
 Vue.component('profile-detail', require('./components/Profile/ProfileDetail').default);
 Vue.component('form-edit-profile', require('./components/Profile/EditProfile').default);
+Vue.component('your-friends', require('./components/include/YourFriends').default);
+Vue.component('header-bar', require('./components/include/Header').default);
 const app = new Vue({
     el: '#app-frontend',
     router

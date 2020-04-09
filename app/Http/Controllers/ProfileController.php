@@ -7,6 +7,7 @@ use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -72,4 +73,22 @@ class ProfileController extends Controller
 
         return $this->responseSuccess('', current_user());
     }
+
+
+    public function changePassword(Request $request)
+    {
+
+        if(!auth()->check())
+        {
+            return $this->responseError('Update Failed');
+        }
+        $input = $request->all();
+        if (Hash::check($input['oldPass'], current_user()->password)){
+            current_user()->password = Hash::make($input['newPass']);
+            current_user()->save();
+            return $this->responseSuccess('Update Success');
+        }
+        return $this->responseError('Update Failed');
+    }
+
 }

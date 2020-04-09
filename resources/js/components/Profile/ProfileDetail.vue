@@ -1,6 +1,6 @@
 <template>
     <form-edit-profile
-        v-if="is_editting && user_can"
+        v-if="!is_editting && user_can"
         :userid="user_data.id"
         :is_edit="is_editting"
         @back="updatedProfile"

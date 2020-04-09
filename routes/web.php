@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
         Route::get('', 'TweetController@index')->name('tweets');
         Route::get('getmore', 'TweetController@newsfeed');
         Route::post('tweet/{id}','TweetController@tweet')->name('tweet');
+        Route::get('get-recommend', 'RecommendController@getYourFriends');
+        Route::post('changePass', 'ProfileController@changePassword');
     });
 
     Route::middleware(['auth'])->prefix('/tweet')->group(function (){
