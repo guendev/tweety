@@ -54,6 +54,8 @@ span.follower-item {
 .profile-action:before {
     content: '';
     margin-left: auto;
+    height: 37px;
+    margin-top: 0.5rem;
 }
 div#app-frontend {
     max-width: 1250px;

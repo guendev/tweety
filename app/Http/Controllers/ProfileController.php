@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -89,6 +90,34 @@ class ProfileController extends Controller
             return $this->responseSuccess('Update Success');
         }
         return $this->responseError('Update Failed');
+    }
+
+    public function changeProfileImg(Request $request)
+    {
+        if(!auth()->check())
+        {
+            return $this->responseError('Update Failed');
+        }
+        $Url=[];
+        $Url = $this->saveImg($request, 'avatar' ,$Url);
+        $Url = $this->saveImg($request, 'cover' ,$Url);
+        return $this->responseSuccess('Update Success', $Url);
+    }
+
+    /**
+     * @param Request $request
+     * @param $type
+     * @param array $Url
+     * @return array
+     */
+    public function saveImg(Request $request, string $type , array $Url): array
+    {
+        if (isset($request[$type]) && $request->validate([$type => ['required', 'file']])) {
+            $Url[$type] = $request[$type]->store($type.'s');
+            current_user()->$type = $Url[$type];
+            current_user()->save();
+        }
+        return $Url;
     }
 
 }

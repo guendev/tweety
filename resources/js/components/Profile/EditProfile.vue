@@ -4,15 +4,28 @@
         <div class="profile-cover">
             <div class="container bg-black overflow-hidden">
                 <div class="g_thumb">
-                    <label for="cover">
-                        <img :src="formData.cover" :alt="formData.name">
+                    <form
+                        id="formImg"
+                        enctype="multipart/form-data"
+                        @submit.prevent="submitImg()"
+                    >
+                    <label for="cover" class="cover-overlay">
+                        <svg class="ra-center text-light fs24 z1"><use xlink:href="#i-camera"></use></svg>
+                        <img
+                            :src="formData.cover"
+                            :alt="formData.name"
+                        >
                         <input
                             id="cover"
                             accept="image/png, image/jpeg, image/jpg"
                             class="hide w-100 h-100 l0"
                             type="file"
+                            name="cover"
+                            ref="cover"
+                            @change="uploadImg($event)"
                         >
                     </label>
+                    </form>
                 </div>
             </div>
         </div>
@@ -21,7 +34,8 @@
                 <div class="row">
                     <div class="col-4 position-relative">
                         <div class="profile-avatar rounded-circle overflow-hidden">
-                            <label for="avatar">
+                            <label for="avatar" class="position-relative cover-overlay">
+                                <svg class="ra-center z1 fs24 text-light"><use xlink:href="#i-camera"></use></svg>
                                 <img alt="Forek"
                                      :src="formData.avatar"
                                      :alt="formData.name"
@@ -31,19 +45,28 @@
                                     accept="image/png, image/jpeg, image/jpg"
                                     class="hide w-100 h-100 l0"
                                     type="file"
+                                    form="formImg"
+                                    name="avatar"
+                                    ref="avatar"
+                                    @change="uploadImg($event)"
                                 >
                             </label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="profile-action text-right mt-2 d-flex">
-                            <a
+                            <button
+                                v-if="formImg !== ''"
+                                form="formImg"
+                                type="submit"
+                                class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
+                            >Upload</button>
+                            <!--<a
                                 @click="back()"
                                class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30"
-                            >Back </a>
+                            >Back </a>-->
                         </div>
                     </div>
-
 
 
                     <form
@@ -185,11 +208,13 @@
 
 <script>
     import Form from "../../support/Form";
-    export default {
+
+   export default {
         name: "form-edit-profile",
         props: ['userid', 'is_edit'],
         data() {
             return {
+                form: '',
                 sexs: ['Boy', 'Girl', 'LGBT'],
                 formHasChange: true,
                 user: this.userid,
@@ -204,16 +229,17 @@
                     sex: '',
                     local: ''
                 },
+                formImg: new FormData(),
                 formData: {
                     id: this.userid,
                     name: '',
                     user_name:'',
                     email: '',
-                    avatar: '',
-                    cover: '',
                     story: '',
                     sex: '',
-                    local: ''
+                    local: '',
+                    cover: '',
+                    avatar: ''
                 },
                 formPass: new Form( {
                     oldPass: '',
@@ -241,8 +267,27 @@
             submitPassword(){
               this.formPass.post('changePass')
                   .then(response => {
-                  console.log(response)
+                  console.log('Change Pass')
               })
+            },
+
+
+            submitImg(){
+                axios.post('changeProfileImg',
+                    this.formImg
+                ).then(response => {
+                    this.formData.avatar = response.data.data.avatar === undefined ? this.user_data.avatar : response.data.data.avatar;
+                    this.formData.cover = response.data.data.cover === undefined ? this.user_data.cover : response.data.data.cover;
+                })
+            },
+
+
+            uploadImg($event){
+              let target = $event.target;
+              this.formImg[target.name] = target.files;
+              this.formImg.append(target.name, target.files[0]);
+              this.formData[target.name] = URL.createObjectURL(target.files[0]);
+              this.formImg.status = true;
             }
         },
 
@@ -261,5 +306,12 @@
 </script>
 
 <style scoped>
-
+    .cover-overlay:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #00000042;
+        left: 0;
+    }
 </style>
