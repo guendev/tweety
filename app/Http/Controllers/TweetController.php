@@ -49,6 +49,11 @@ class TweetController extends Controller
         ];
     }
 
+    public function discovery()
+    {
+        return view('layouts.discovery.index');
+    }
+
     /**
      * @param int $limit
      * @param int $page

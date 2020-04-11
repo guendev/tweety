@@ -26,9 +26,9 @@
                         <span class="ml12 fs18 d-lg-inline-block d-none">Tin Nhắn</span></a>
                 </li>
                 <li class="menu-item my-2">
-                    <a class="hover-bg br30_hover px-3 pb-2 pt-1">
+                    <a class="hover-bg br30_hover px-3 pb-2 pt-1" href="{{ route('discovery') }}">
                         <svg><use xlink:href="#i-home"></use></svg>
-                        <span class="ml12 fs18 d-lg-inline-block d-none">Dấu Trang</span></a>
+                        <span class="ml12 fs18 d-lg-inline-block d-none">Discovery</span></a>
                 </li>
                 <li class="menu-item my-2">
                     <a class="hover-bg br30_hover px-3 pb-2 pt-1">

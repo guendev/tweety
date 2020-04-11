@@ -56,10 +56,10 @@
                     <div class="col">
                         <div class="profile-action text-right mt-2 d-flex">
                             <button
-                                v-if="formImg !== ''"
+                                v-if="formImg.avatar !== undefined || formImg.cover !== undefined"
                                 form="formImg"
                                 type="submit"
-                                class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
+                                class="btn bg-none bd-none btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
                             >Upload</button>
                             <!--<a
                                 @click="back()"
@@ -313,5 +313,8 @@
         height: 100%;
         background: #00000042;
         left: 0;
+    }
+    .profile-action:before {
+        margin-top: 0.5rem;
     }
 </style>

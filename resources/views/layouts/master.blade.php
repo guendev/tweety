@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tweety</title>
+    @yield('meta')
+    @include('include.favicon')
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -13,9 +14,10 @@
 <body>
 
 
-<div class="content mt12">
+<div class="content mt-1">
     @include('include.svg')
-    <div class="container" id="app-frontend">
+    <div class="container position-relative" id="app-frontend">
+        <app-noti></app-noti>
         <div class="row">
             @include('layouts.sidebar.left')
             @yield('content')

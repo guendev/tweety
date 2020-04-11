@@ -117,10 +117,11 @@
 
 <script>
     import moment from "moment";
+    import { eventBus } from "../../app";
 
     export default {
         name: "ProfileDetail",
-        props: ['user', 'follow', 'user_can', 'is_following'],
+        props: ['user', 'follow', 'user_can', 'is_following', 'count'],
         data() {
             return {
                 user_data: JSON.parse(this.user),
@@ -137,7 +138,11 @@
             followAction(){
                 axios.post( '/'+this.user_data.user_name+'/follow')
                     .then((response) => {
-                        this.following = response.data.isfollow
+                        this.following = response.data.isfollow;
+                        eventBus.$emit('noti', {
+                            title: ( this.following ? 'Follow' : 'Unfollow' ) + ' Success',
+                            content: 'You was ' + (this.following ? 'followed ' : 'unfollowed ') + this.user_data.name
+                        })
                     })
             },
             editProfile(){
@@ -148,10 +153,11 @@
                 this.editProfile();
             }
         },
-
-
         created() {
-            console.log(this.follow_data.follow)
+            eventBus.$emit('header-data', {
+                'title': this.user_data.name,
+                subHeader: this.count + ' Tweets'
+            });
         }
     }
 </script>

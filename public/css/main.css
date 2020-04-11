@@ -55,12 +55,14 @@ span.follower-item {
     content: '';
     margin-left: auto;
     height: 37px;
-    margin-top: 0.5rem;
 }
 div#app-frontend {
     max-width: 1250px;
 }
 
+.btn-outline-primary:hover {
+    background-color: #3490dc00;
+}
 
 
 .reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
