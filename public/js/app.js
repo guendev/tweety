@@ -2914,10 +2914,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     infiniteHandler: function infiniteHandler($state) {
       var _this = this;
 
-      var url = this.$route.fullPath === '/' ? '/getmore' : '/tweets/loadmore';
+      var url = '';
+      var user = '';
+
+      if (this.$route.fullPath === '/') {
+        url = '/getmore';
+      } else {
+        url = '/tweets/loadmore';
+
+        try {
+          user = this.tweetsData[0].id;
+        } catch (e) {
+          user = -1;
+        }
+      }
+
       axios.get(url, {
         params: {
-          user_id: this.tweetsData[0].id,
+          user_id: user,
           page: this.page
         }
       }).then(function (_ref) {

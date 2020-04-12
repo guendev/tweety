@@ -117,10 +117,21 @@
                return moment($time).format("MM-DD-YYYY")
            },
             infiniteHandler($state) {
-                const url = this.$route.fullPath === '/' ? '/getmore' : '/tweets/loadmore';
+                let url = '';
+                let user = '';
+               if (this.$route.fullPath === '/'){
+                   url = '/getmore'
+               } else {
+                   url = '/tweets/loadmore';
+                   try {
+                       user =  this.tweetsData[0].id;
+                   } catch (e) {
+                       user = -1;
+                   }
+               }
                 axios.get( url, {
                     params: {
-                        user_id: this.tweetsData[0].id,
+                        user_id: user,
                         page: this.page,
                     },
                 }).then(({ data }) => {
