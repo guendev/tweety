@@ -7,14 +7,14 @@
         >
             <div class="user-meta col-auto">
                 <div class="g_thumb circle">
-                    <img :src="user_data.avatar">
+                    <img :src="tweet.author_avatar">
                 </div>
             </div>
 
             <div class="tweet-box col w-auto pl-0">
                 <div class="tweet-title">
                     <h5>
-                        <a class="text-white fs16" :href="'/@'+tweet.author_user_name">{{ user_data.name }}</a>
+                        <a class="text-white fs16" :href="'/@'+tweet.author_user_name">{{ tweet.author_name }}</a>
                         <a class="text-muted fs14 ml4"><i class="mr4 fs12">. {{ formatTime(tweet.created_at) }} </i></a>
                     </h5>
                 </div>
@@ -49,12 +49,12 @@
                             <span class="count fs14 mr-auto">{{ tweet.count_comment }}</span>
                         </div>
                         <div class="count-retweet w-25 d-flex align-items-center text-muted">
-                                <a href="javascript:void(0)" class="tweet-action-link mr4 text-muted br20_hover">
-                                    <svg>
+                            <a href="javascript:void(0)" class="tweet-action-link mr4 text-muted br20_hover">
+                                <svg>
                                     <use xlink:href="#i-retweet"></use>
                                 </svg>
-                                </a>
-                                <span class="count fs14">{{ tweet.count_retweet }}</span>
+                            </a>
+                            <span class="count fs14">{{ tweet.count_retweet }}</span>
                         </div>
                         <div class="count-like w-25 d-flex align-items-center text-muted">
                             <a
@@ -98,31 +98,30 @@
 <script>
     import moment from 'moment';
     import InfiniteLoading from 'vue-infinite-loading';
-    import Form from "../../support/Form";
+    import routes from "../../routes";
     export default {
-       name: "TweetDetail",
-        props:['tweets', 'user', 'current_user'],
+       name: "NewsFeed",
+        props:['tweets'],
         components: {
             InfiniteLoading
         },
         data() {
             return {
                 tweetsData: JSON.parse(this.tweets),
-                user_data: JSON.parse(this.user),
                 page: 1,
                 is_loading: true
             }
         },
         methods: {
            formatTime($time){
-               return moment($time).format('d-m-Y')
+               return moment($time).format("MM-DD-YYYY")
            },
-
             infiniteHandler($state) {
-                axios.get('/tweets/loadmore', {
+                const url = this.$route.fullPath === '/' ? '/getmore' : '/tweets/loadmore';
+                axios.get( url, {
                     params: {
-                        user_id: this.user_data.id,
-                        page: this.page
+                        user_id: this.tweetsData[0].id,
+                        page: this.page,
                     },
                 }).then(({ data }) => {
                     if (data.length > 0) {
@@ -131,26 +130,22 @@
                         $state.loaded();
                     } else {
                         $state.complete();
-                        this.is_loading = false;
                     }
                 });
             },
-
             like(tweet){
-                if (this.current_user){
-                   axios.get('tweet/like-tweet', {
-                       params: {
-                           tweet_id: tweet.id
-                       }
-                   }).then(({ data }) => {
-                       tweet.is_like = tweet.like_status = data.data;
-                       if (tweet.is_like){
-                           tweet.count_like += 1;
-                       } else {
-                           tweet.count_like -= 1;
-                       }
-                   })
-               }
+                    axios.get('/tweet/like-tweet', {
+                        params: {
+                            tweet_id: tweet.id
+                        }
+                    }).then(({ data }) => {
+                        tweet.is_like = tweet.like_status = data.data;
+                        if (tweet.is_like){
+                            tweet.count_like += 1;
+                        } else {
+                            tweet.count_like -= 1;
+                        }
+                    })
             }
         }
     }

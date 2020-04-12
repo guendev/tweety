@@ -63,8 +63,30 @@ div#app-frontend {
 .btn-outline-primary:hover {
     background-color: #3490dc00;
 }
-
-
 .reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
     background: #14202a;
+}
+
+/*Animation */
+.heart {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    background-image:url( '/img/theme/web_heart_animation.png');
+    background-position: left;
+    background-repeat:no-repeat;
+    background-size:2900%;
+    transform: translate(-50%, -50%);
+}
+
+.heart._liked {
+    background-position: right;
+}
+.heart._like_Animation{
+    animation: heart-burst .8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+    from {background-position:left;}
+    to { background-position:right;}
 }

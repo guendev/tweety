@@ -21,10 +21,9 @@
                 is_following="{{ current_user() ? current_user()->isFollowing($user) : '' }}"
                 count="{{ $user->tweets()->count() }}"
             ></profile-detail>
-            <tweet-detail
+            <new-feeds
                 tweets="{{ json_encode($profile_data) }}"
-                user="{{ $user }}"
-            ></tweet-detail>
+            ></new-feeds>
         </div>
     </div>
 @endsection

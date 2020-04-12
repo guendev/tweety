@@ -56,7 +56,6 @@
 
                     .then((response) => {
                         this.newPost = response;
-                        console.log('posted !!');
                         this.$emit('completed', status)
                     })
             }

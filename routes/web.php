@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
     Route::middleware(['auth'])->prefix('')->group(function (){
         Route::get('', 'TweetController@index')->name('tweets');
         Route::get('discovery', 'TweetController@discovery')->name('discovery');
-        Route::get('getmore', 'TweetController@newsfeed');
+        Route::get('/getmore', 'TweetController@infinity');
         Route::post('tweet/{id}','TweetController@tweet')->name('tweet');
         Route::get('get-recommend', 'RecommendController@getYourFriends');
         Route::post('changePass', 'ProfileController@changePassword');
@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 
     Route::middleware(['auth'])->prefix('/tweet')->group(function (){
         Route::get('/authorinfo', 'TweetController@authorinfo');
+        Route::get('/like-tweet', 'TweetActionController@like');
     });
 
     Route::middleware(['auth'])->group(function (){

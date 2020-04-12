@@ -24,14 +24,13 @@ class TweetController extends Controller
     }
 
 
-    public function newsfeed(Request $request)
+    public function infinity(Request $request)
     {
             $input = $request->all();
             $limit = 5;
             $page = isset($input['page']) ? (int)$input['page'] : 1;
             $tweets = $this->getDataNewsFeed($limit, $page);
-            $tweets_data = $this->getNewsFeed($tweets);
-            return $this->responseSuccess('', $tweets_data);
+            return $this->getNewsFeed($tweets);
     }
 
 

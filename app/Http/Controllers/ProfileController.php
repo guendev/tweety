@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 
 class ProfileController extends Controller
 {
+
     public function index(User $user){
         $data = $this->getProfileData($user->id, 5, 0);
         $profile_data = $this->getNewsFeed($data);
@@ -30,7 +31,8 @@ class ProfileController extends Controller
             $limit = 5;
             $page = isset($input['page']) ? (int)$input['page'] : 1;
             $user_id = $input['user_id'];
-            return $this->getProfileData($user_id, $limit, $page);
+            $data = $this->getProfileData($user_id, $limit, $page);
+            return $this->getNewsFeed($data);
         }
         return false;
     }

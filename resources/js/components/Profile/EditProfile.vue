@@ -59,12 +59,13 @@
                                 v-if="formImg.avatar !== undefined || formImg.cover !== undefined"
                                 form="formImg"
                                 type="submit"
-                                class="btn bg-none bd-none btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
+                                class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
                             >Upload</button>
-                            <!--<a
-                                @click="back()"
-                               class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30"
-                            >Back </a>-->
+                          <button
+                              v-else
+                              @click="back()"
+                              class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30"
+                            >Back </button>
                         </div>
                     </div>
 

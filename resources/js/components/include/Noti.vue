@@ -31,7 +31,6 @@
         methods: {
           showNoti($data) {
               this.notis.unshift($data);
-              console.log("note1", this.notis);
               setTimeout( ()=> {
                   this.notis.pop();
               }, 3000)
@@ -40,7 +39,6 @@
         },
         created() {
             eventBus.$on('noti', ($data) => {
-                console.log($data);
                 this.showNoti($data);
             })
         }

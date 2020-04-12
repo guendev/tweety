@@ -47,6 +47,7 @@ class Controller extends BaseController
                 'id' => $tweet->id,
                 'content' => $tweet->content,
                 'tags' => $tweet->tags,
+                'is_like' => current_user() ? current_user()->checkLike($tweet->id) : false ,
                 'count_like' => $tweet->count_like,
                 'count_comment' => $tweet->count_comment,
                 'count_share' => $tweet->count_share,

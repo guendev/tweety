@@ -35,7 +35,6 @@
             axios.get('/get-recommend')
             .then(({ data }) => {
                 this.FriendsData = data.data;
-                console.log(this.FriendsData)
             })
         }
     }

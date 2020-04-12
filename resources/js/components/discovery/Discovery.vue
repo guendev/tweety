@@ -115,11 +115,8 @@
             })
             .then(({ data }) => {
                 this.page += 1;
-                console.log(data);
                 this.users.push(...data);
-                console.log(data)
             });
-            console.log(this.count);
             eventBus.$emit('header-data', {
                 title: 'Discovery',
                 subHeader: this.count + ' Friends',
