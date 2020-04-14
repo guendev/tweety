@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
+<body class="bg-dark-1">
 
 
 <div class="content mt-1">
@@ -30,5 +30,6 @@
 
 <script>window.__user_id__ = '{{ current_user() ? current_user()->id : 0 }}'</script>
 <script src="/js/app.js"></script>
+<script src="/js/template.js"></script>
 </body>
 </html>

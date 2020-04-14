@@ -1,16 +1,18 @@
 <template>
     <div class="tweet-box position-relative">
         <div
-            class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
-            :class="'tweet-id-'+tweet.id+' author-id-'+tweet.author_id"
             v-for="(tweet, index) in tweetsData"
+            class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
+            :class=" tweet.repling ? '_replying' : '' + ' tweet-' + tweet.id + ' author-' + tweet.author_id "
         >
             <div class="user-meta col-auto">
                 <div class="g_thumb circle">
-                    <img :src="tweet.author_avatar">
+                    <img
+                        :alt="tweet.author_name"
+                        :src="tweet.author_avatar ? tweet.author_avatar : '/img/theme/avatar-default.jpg'"
+                    >
                 </div>
             </div>
-
             <div class="tweet-box col w-auto pl-0">
                 <div class="tweet-title">
                     <h5>
@@ -26,7 +28,7 @@
                     <div class="tweet-hashtag">
                         <ul class="list-hashtag nav">
                             <li v-for="( tag , index) in tweet.tags" :key="index">
-                                <a href="#" class="hashtag-link mr4">#{{ tag.tag.tag }}</a>
+                                <a href="#" class="hashtag-link text-primary mr4">#{{ tag.tag }}</a>
                             </li>
                         </ul>
                     </div>
@@ -41,7 +43,12 @@
 
                     <div class="tweet-action-group fs16 mt-2 d-flex pb-1">
                         <div class="count_cmt w-25 d-flex align-items-center text-muted">
-                            <a href="javascript:void(0)" class="tweet-action-link mr4 text-muted br20_hover">
+                            <a
+                                href="javascript:void(0)"
+                                class="tweet-action-link mr4 text-muted br20_hover"
+                                @click="replies(tweet, index)"
+                                ref="openReplies"
+                            >
                                 <svg>
                                     <use xlink:href="#i-comment"></use>
                                 </svg>
@@ -64,7 +71,6 @@
                             >
                                 <div class="heart position-absolute"
                                      :class="(tweet.is_like && tweet.like_status) ? '_liked _like_Animation' : tweet.is_like ? '_liked' : '' "
-                                     ref="heartIcon"
                                 ></div>
                             </a>
                             <span class="count fs14 ml-2">{{ tweet.count_like }}</span>
@@ -78,27 +84,26 @@
                             <span class="count fs14">{{ tweet.count_share }}</span>
                         </div>
                     </div>
-
+                    <reply
+                        v-if="tweet.repling"
+                        :tweet_id="tweet.id"
+                        @closeReplies="tweet.repling = false"
+                    ></reply>
                 </div>
             </div>
         </div>
         <infinite-loading
-            v-if="is_loading"
             @infinite="infiniteHandler"
             ref="infiniteLoading">
         </infinite-loading>
-        <div v-else
-             class="news-feed-item d-flex bg-dark-1 my-2 py-3"
-        >
-            <p class="text-muted mx-auto">Nothing Here :))</p>
-        </div>
     </div>
 </template>
-
 <script>
     import moment from 'moment';
     import InfiniteLoading from 'vue-infinite-loading';
     import routes from "../../routes";
+    import { eventBus } from "../../app";
+
     export default {
        name: "NewsFeed",
         props:['tweets'],
@@ -108,8 +113,7 @@
         data() {
             return {
                 tweetsData: JSON.parse(this.tweets),
-                page: 1,
-                is_loading: true
+                page: 1
             }
         },
         methods: {
@@ -144,20 +148,31 @@
                     }
                 });
             },
+            replies(tweet, index){
+                $('html, body').animate({
+                    scrollTop: $(this.$refs.openReplies[index]).closest('.news-feed-item').offset().top - 55
+                }, 500);
+               tweet.repling = true;
+            },
             like(tweet){
-                    axios.get('/tweet/like-tweet', {
-                        params: {
-                            tweet_id: tweet.id
-                        }
-                    }).then(({ data }) => {
-                        tweet.is_like = tweet.like_status = data.data;
-                        if (tweet.is_like){
-                            tweet.count_like += 1;
-                        } else {
-                            tweet.count_like -= 1;
-                        }
-                    })
+                axios.get('/tweet/like-tweet', {
+                    params: {
+                        tweet_id: tweet.id
+                    }
+                }).then(({ data }) => {
+                    tweet.is_like = tweet.like_status = data.data;
+                    if (tweet.is_like){
+                        tweet.count_like += 1;
+                    } else {
+                        tweet.count_like -= 1;
+                    }
+                })
             }
+        },
+        created() {
+           eventBus.$on('add-tweet', ($data) => {
+               this.tweetsData.unshift($data)
+           })
         }
     }
 </script>

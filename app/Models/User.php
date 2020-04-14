@@ -77,7 +77,7 @@ class User extends Authenticatable
 
     public function path($appent = '')
     {
-        $path = route('User', $this->user_name);
+        $path = route('UserController', $this->user_name);
         return $appent ? "{$path}/{$appent}" : $path;
 
     }

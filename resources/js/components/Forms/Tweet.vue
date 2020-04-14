@@ -2,7 +2,7 @@
     <div class="row">
         <div class="user-meta col-auto">
             <div class="g_thumb circle">
-                <img :src="avatar">
+                <img :src="avatar ? avatar : '/img/theme/avatar-default.jpg'">
             </div>
         </div>
         <div class="tweet-box col w-auto pl-0">
@@ -39,24 +39,39 @@
 </template>
 
 <script>
-    import Form from "../../support/Form";
+    import { eventBus } from "../../app";
+
     export default {
         name: "Tweet",
         props: ['avatar'],
         data() {
             return {
-                form: new Form({ content: '' }),
+                form: {
+                    content: ''
+                },
                 newPost: ''
             }
         },
 
         methods: {
             onSubmit(){
-                this.form.post('tweet/'+window.__user_id__)
-
-                    .then((response) => {
-                        this.newPost = response;
-                        this.$emit('completed', status)
+                axios.post('tweet/'+window.__user_id__, {
+                    content: this.form.content
+                })
+                    .then( ({ data }) => {
+                        if (data.error){
+                            eventBus.$emit('noti', {
+                                title: data.msg,
+                                content: 'Please try again !'
+                            })
+                        } else {
+                            eventBus.$emit('add-tweet', data.data[0]);
+                            eventBus.$emit('noti', {
+                                title: data.msg,
+                                content: 'Your tweet has been post !'
+                            });
+                            this.form.content = ''
+                        }
                     })
             }
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="trending-area bg-dark-2 mt20 py-3 br30">
+    <div class="trending-area bg-dark-2 mt-2 py-3 br10">
         <h5 class="text-white bbr-dark2 pr-3 ml-3">Your Friends</h5>
         <div
             v-for="friend in FriendsData"

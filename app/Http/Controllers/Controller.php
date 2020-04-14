@@ -35,28 +35,44 @@ class Controller extends BaseController
     {
         $tweets_data = [];
         foreach ($tweets as $tweet) {
-            $tweet_tag = [];
-            if (isset($tweet->tags)) {
-                foreach ($tweet->tags as $tag) {
-                    $tweet_tag[] = [
-                        'tag' => $tag->tag->tag
-                    ];
-                }
-            }
-            $tweets_data[] = [
-                'id' => $tweet->id,
-                'content' => $tweet->content,
-                'tags' => $tweet->tags,
-                'is_like' => current_user() ? current_user()->checkLike($tweet->id) : false ,
-                'count_like' => $tweet->count_like,
-                'count_comment' => $tweet->count_comment,
-                'count_share' => $tweet->count_share,
-                'author_id' => $tweet->author->id,
-                'author_user_name' => $tweet->author->user_name,
-                'author_name' => $tweet->author->name,
-                'author_avatar' => $tweet->author->avatar,
-            ];
+            $tweets_data = $this->getAttr($tweet, $tweets_data);
         }
+        return $tweets_data;
+    }
+    public function getCurrentUser()
+    {
+        return current_user();
+    }
+
+    /**
+     * @param $tweet
+     * @param array $tweets_data
+     * @return array
+     */
+    public function getAttr($tweet, array $tweets_data): array
+    {
+        $tweet_tag = [];
+        if (isset($tweet->tags)) {
+            foreach ($tweet->tags as $tag) {
+                $tweet_tag[] = [
+                    'tag' => $tag->tag->tag
+                ];
+            }
+        }
+        $tweets_data[] = [
+            'id' => $tweet->id,
+            'content' => $tweet->content,
+            'tags' => $tweet_tag,
+            'is_like' => current_user() ? current_user()->checkLike($tweet->id) : false,
+            'count_like' => $tweet->count_like,
+            'count_comment' => $tweet->reply()->count(),
+            'count_share' => $tweet->count_share,
+            'author_id' => $tweet->author->id,
+            'author_user_name' => $tweet->author->user_name,
+            'author_name' => $tweet->author->name,
+            'author_avatar' => $tweet->author->avatar,
+            'repling' => false
+        ];
         return $tweets_data;
     }
 }

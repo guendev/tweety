@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-4 position-relative">
                     <div class="profile-avatar rounded-circle overflow-hidden">
-                        <a href="{{ route('User', $user) }}">
+                        <a href="{{ route('UserController', $user) }}">
                             <img class="img_100" alt="{{ $user->name }}" src="{{ $user->avatar }}">
                         </a>
                     </div>

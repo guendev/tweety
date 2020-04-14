@@ -1,8 +1,7 @@
 <template>
     <div>
-
         <div class="profile-cover">
-            <div class="container bg-black overflow-hidden">
+            <div class="bg-black overflow-hidden">
                 <div class="g_thumb">
                     <form
                         id="formImg"
@@ -12,7 +11,7 @@
                     <label for="cover" class="cover-overlay">
                         <svg class="ra-center text-light fs24 z1"><use xlink:href="#i-camera"></use></svg>
                         <img
-                            :src="formData.cover"
+                            :src="formData.cover ? formData.cover : '/img/theme/tweety.jpg'"
                             :alt="formData.name"
                         >
                         <input
@@ -34,10 +33,10 @@
                 <div class="row">
                     <div class="col-4 position-relative">
                         <div class="profile-avatar rounded-circle overflow-hidden">
-                            <label for="avatar" class="position-relative cover-overlay">
+                            <label for="avatar" class="w-100 position-relative cover-overlay">
                                 <svg class="ra-center z1 fs24 text-light"><use xlink:href="#i-camera"></use></svg>
                                 <img alt="Forek"
-                                     :src="formData.avatar"
+                                     :src="formData.avatar ? formData.avatar : '/img/theme/avatar-default.jpg'"
                                      :alt="formData.name"
                                      class="img_100">
                                 <input

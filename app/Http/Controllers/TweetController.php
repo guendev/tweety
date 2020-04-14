@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,17 +36,20 @@ class TweetController extends Controller
 
 
     public function tweet(){
-        $attr = request()->validate([
-            'content'   =>  'required'
-        ]);
-        Tweet::create([
-            'user_id'   =>  current_user()->id,
-            'content'   => $attr['content']
-        ]);
-        return [
-            'user'  => current_user(),
-            'post'  => current_user()->tweets()->latest("created_at")->first()
-        ];
+        try {
+            $attr = request()->validate([
+                'content'   =>  'required'
+            ]);
+            Tweet::create([
+                'user_id'   =>  current_user()->id,
+                'content'   => $attr['content']
+            ]);
+            $tweet = current_user()->tweets()->latest("created_at")->first();
+            $tweets_data = [];
+            return $this->responseSuccess('Tweet Success', $this->getAttr($tweet, $tweets_data));
+        } catch (\Exception $exception){
+            return $this->responseError('Tweet Failed');
+        }
     }
 
     public function discovery()

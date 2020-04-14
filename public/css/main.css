@@ -1,11 +1,6 @@
-body{
-    background: var(--dark-color);
-}
-
 .bg-dark-1{
     background: var(--dark-color);
 }
-
 .bg-dark-2{
     background: var(--dark-color-2);
 }
@@ -66,7 +61,6 @@ div#app-frontend {
 .reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
     background: #14202a;
 }
-
 /*Animation */
 .heart {
     cursor: pointer;
@@ -78,7 +72,6 @@ div#app-frontend {
     background-size:2900%;
     transform: translate(-50%, -50%);
 }
-
 .heart._liked {
     background-position: right;
 }
@@ -89,4 +82,15 @@ div#app-frontend {
 @keyframes heart-burst {
     from {background-position:left;}
     to { background-position:right;}
+}
+/* Header */
+.site-header{
+    position: fixed;
+    z-index: 9;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+.site-content {
+    padding-top: 50px;
 }

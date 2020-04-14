@@ -10,9 +10,9 @@
         class="profile-info"
     >
         <div class="profile-cover">
-            <div class="container bg-black overflow-hidden">
+            <div class="container bg-black overflow-hidden px-0">
                 <div class="g_thumb">
-                    <img :alt="user_data.name" :src="user_data.cover">
+                    <img :alt="user_data.name" :src="user_data.cover ? user_data.cover : '/img/theme/tweety.jpg'">
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <div class="col-4 position-relative">
                         <div class="profile-avatar rounded-circle overflow-hidden">
                             <a href="">
-                                <img class="img_100" :alt="user_data.name" :src="user_data.avatar">
+                                <img class="img_100" :alt="user_data.name" :src="user_data.avatar ? user_data.avatar : '/img/theme/avatar-default.jpg'">
                             </a>
                         </div>
                     </div>

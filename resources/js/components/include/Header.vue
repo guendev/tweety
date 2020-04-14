@@ -1,5 +1,8 @@
 <template>
-    <div class="site-header bg-dark-1">
+    <div
+        class="site-header bg-dark-1"
+        :style="{ width: width + 'px' }"
+    >
         <div class="container">
             <div class="row h50 fs18 justify-content-between align-items-center">
                 <div
@@ -8,6 +11,7 @@
                 >
                     <a
                         href="javascript:void(0)"
+                        class="text-light"
                         @click="back()"
                     >
                         <svg class="fs24"><use xlink:href="#i-back"></use></svg>
@@ -43,7 +47,8 @@
                 title: '',
                 subHeader: '',
                 profile_url: new RegExp('^(/@)([a-zA-Z0-9])*$', 'i'),
-                discover_url: new RegExp('^(/)(discovery)*$', 'i')
+                discover_url: new RegExp('^(/)(discovery)*$', 'i'),
+                width: '',
             }
         },
         methods: {
@@ -63,6 +68,7 @@
                 this.title = $data.title;
                 this.subHeader = $data.subHeader
             });
+            this.width = $('.site-content').width();
         }
     }
 </script>
