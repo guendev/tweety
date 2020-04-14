@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reply;
 use App\Models\Tweet;
-use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
-use function MongoDB\BSON\toJSON;
 
 class TweetController extends Controller
 {
@@ -47,7 +45,7 @@ class TweetController extends Controller
             $tweet = current_user()->tweets()->latest("created_at")->first();
             $tweets_data = [];
             return $this->responseSuccess('Tweet Success', $this->getAttr($tweet, $tweets_data));
-        } catch (\Exception $exception){
+        } catch (Exception $exception){
             return $this->responseError('Tweet Failed');
         }
     }

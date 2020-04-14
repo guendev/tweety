@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -20,7 +19,6 @@ class ProfileController extends Controller
         $follow_data['count_following'] = $user->following()->count();
         $follow_data['count_follower'] = $user->follower()->count();
         $follow_data['follow'] = $user->sameFollow();
-        //return ddd($follow_data);
         return view('layouts.profile.index', compact('user', 'profile_data', 'follow_data'));
     }
 
