@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,23 @@ class TweetController extends Controller
         return view('layouts.discovery.index');
     }
 
+    public function search(Request $request){
+        try {
+            $value = $request['input'];
+            $users = User::where('user_name', 'like', '%'.$value.'%')->take(5)->get();
+            $users_data = [];
+            $users_data = $this->getUserAttr($users, $users_data);
+            $tweets = Tweet::where('content', 'like' , '%'.$value.'%')->take(2)->get();
+            $tweets_data = $this->getNewsFeed($tweets);
+            return $this->responseSuccess('', [
+                'user' => $users_data,
+                'tweets' => $tweets_data
+            ]);
+        } catch (Exception $exception){
+            return $this->responseError('Error, please try again!');
+        }
+    }
+
     /**
      * @param int $limit
      * @param int $page
@@ -66,6 +84,23 @@ class TweetController extends Controller
             ->skip($limit * $page)
             ->take($limit)
             ->get();
+    }
+
+    /**
+     * @param $users
+     * @param array $users_data
+     * @return array
+     */
+    public function getUserAttr($users, array $users_data): array
+    {
+        foreach ($users as $user) {
+            $users_data[] = [
+                'name' => $user->name,
+                'avatar' => $user->avatar,
+                'user_name' => $user->user_name
+            ];
+        }
+        return $users_data;
     }
 
 }

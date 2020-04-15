@@ -27,6 +27,7 @@ Route::post('api/register', 'UserController@register');
         Route::get('get-discovery', 'DiscoveryController@get');
         Route::get('get-reply','ReplyController@replies');
         Route::post('/post-reply', 'ReplyController@create');
+        Route::get('/search', 'TweetController@search');
         Route::get('/current_user', function (){
             return current_user();
         });

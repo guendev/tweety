@@ -142,7 +142,12 @@
                         eventBus.$emit('noti', {
                             title: ( this.following ? 'Follow' : 'Unfollow' ) + ' Success',
                             content: 'You was ' + (this.following ? 'followed ' : 'unfollowed ') + this.user_data.name
-                        })
+                        });
+                        if (this.following){
+                            eventBus.$emit('add-friend', this.user_data)
+                        } else {
+                            eventBus.$emit('unfriend', this.user_data.id)
+                        }
                     })
             },
             editProfile(){

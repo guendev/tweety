@@ -14,7 +14,7 @@
                                 :alt="user.name"
                             >
                                 <img
-                                    :src="user.avatar"
+                                    :src="user.avatar ? user.avatar : '/img/theme/avatar-default.jpg'"
                                     :alt="user.name"
                                 >
                             </a>
@@ -101,7 +101,12 @@
                         eventBus.$emit('noti', {
                             title: ( user.isFollowing ? 'Follow' : 'Unfollow' ) + ' Success',
                             content: 'You was ' + (user.isFollowing ? 'followed ' : 'unfollowed ') + user.name
-                        })
+                        });
+                        if (user.isFollowing){
+                            eventBus.$emit('add-friend', user)
+                        } else {
+                            eventBus.$emit('unfriend', user.id)
+                        }
                     })
             }
 
@@ -120,7 +125,7 @@
             eventBus.$emit('header-data', {
                 title: 'Discovery',
                 subHeader: this.count + ' Friends',
-            })
+            });
         }
     }
 </script>

@@ -23,7 +23,9 @@
             ></profile-detail>
             @if(current_user() == $user)
                 <div class="col bg-dark-1 pt-3 my-2">
-                    <tweet-form></tweet-form>
+                    <tweet-form
+                        avatar="{{ current_user()->avatar }}"
+                    ></tweet-form>
                 </div>
             @endif
             <new-feeds

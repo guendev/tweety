@@ -2,7 +2,7 @@
     <div class="sidebar-left-item position-fixed px-md-3">
         <div class="logo-site">
             <h5 class="">
-                <a class="p-3 text-white fs32" href="/home">
+                <a class="p-3 text-white fs32" href="/">
                     <svg class=""><use xlink:href="#i-twitter"></use></svg>
                 </a>
             </h5>
@@ -57,9 +57,6 @@
                     </li>
                 @endif
             </ul>
-        </div>
-        <div class="quick-tweet mt-2">
-            <a class="btn btn-block btn-primary text-white py-2 br30">Tweet</a>
         </div>
     </div>
 </div>

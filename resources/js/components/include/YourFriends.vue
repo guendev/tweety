@@ -9,7 +9,7 @@
                 <a
                     :href="'/@'+friend.user_name"
                 ><img
-                    :src="friend.avatar"
+                    :src="friend.avatar ? friend.avatar : '/img/theme/avatar-default.jpg'"
                 ></a>
             </div>
             <div class="user-meta text-white mr4 ml4 w-auto oh d-lg-inline-block d-none">
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+    import { eventBus } from "../../app";
+
     export default {
         name: "YourFriends",
         data() {
@@ -35,7 +37,20 @@
             axios.get('/get-recommend')
             .then(({ data }) => {
                 this.FriendsData = data.data;
-            })
+                eventBus.$emit('friends', this.FriendsData)
+            });
+            eventBus.$on('add-friend', ($data) => {
+                this.FriendsData.unshift($data)
+            });
+            eventBus.$on('unfriend', (data) => {
+                for (let i=0; i < this.FriendsData.length ; i++){
+                    if (this.FriendsData[i].id === data){
+                        this.FriendsData.splice(i,1);
+                        //delete this.FriendsData[i];
+                        break;
+                    }
+                }
+            });
         }
     }
 </script>

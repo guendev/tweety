@@ -87,8 +87,6 @@ div#app-frontend {
 .site-header{
     position: fixed;
     z-index: 9;
-    left: 50%;
-    transform: translateX(-50%);
     top: 0;
 }
 .site-content {
