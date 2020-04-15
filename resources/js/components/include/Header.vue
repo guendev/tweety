@@ -54,9 +54,11 @@
             </div>
             <div
                 class="result-box bg-dark-2 pt-2"
-                :class="users === tweets ? 'bg-search': ''"
             >
-                <div class="container pt-3 pb-2 bg-dark-1">
+                <div
+                    class="container pt-3 pb-2 bg-dark-1"
+                    v-if="users.length > 0"
+                >
                     <div class="row list-friend">
                         <div
                             v-for="friend in users"
@@ -69,7 +71,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="search-result mt-3">
+                <div class="search-result mt-3"
+                     v-if="tweets.length > 0"
+                >
                     <div
                         v-for="(tweet, index) in tweets"
                         class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
