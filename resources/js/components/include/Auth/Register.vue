@@ -22,6 +22,7 @@
                                 placeholder="Your Name"
                                 v-model="name"
                                 autocomplete="new-password"
+                                required
                             >
                         </div>
                         <div class="col-sm-6">
@@ -32,6 +33,7 @@
                                 placeholder="user_name"
                                 v-model="user_name"
                                 autocomplete="new-password"
+                                required
                             >
                         </div>
                     </div>
@@ -43,6 +45,7 @@
                             placeholder="Email Address"
                             v-model="email"
                             autocomplete="new-password"
+                            required
                         >
                     </div>
                     <div class="form-group row">
@@ -54,19 +57,25 @@
                                 placeholder="Password"
                                 v-model="pass"
                                 autocomplete="new-password"
+                                required
                             >
                         </div>
                         <div class="col-sm-6">
                             <input
                                 type="password"
                                 class="form-control reset-form-control br10 px-3 py-4"
+                                :class="repass.split('').length > 0 && repass !== pass ? 'text-danger' : ''"
                                 id="repass"
+                                v-model="repass"
                                 placeholder="Repeat Password"
                                 autocomplete="new-password"
+                                required
                             >
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary br10 px-3 py-2 btn-block">
+                    <button
+                        type="submit" class="btn btn-primary br10 px-3 py-2 btn-block"
+                    >
                         Register Account
                     </button>
                 </form>
@@ -108,6 +117,7 @@
                 user_name: '',
                 email: '',
                 pass: '',
+                repass:'',
                 msg: '',
                 completed: false,
                 key: 'register'
