@@ -38,7 +38,7 @@
 
 
 <script>window.__user_id__ = '{{ current_user() ? current_user()->id : 0 }}'</script>
-<script src="/js/app.js"></script>
-<script src="/js/template.js"></script>
+<script src="{{ web_asset('/js/app.js') }}"></script>
+<script src="{{ web_asset('/js/template.js') }}"></script>
 </body>
 </html>
