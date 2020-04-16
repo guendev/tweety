@@ -3211,6 +3211,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8534,7 +8542,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.box_search input[data-v-520e3a02]::-webkit-input-placeholder, .box_search input[data-v-520e3a02]{\n    color: #ffffff;\n    font-size: 15px;\n    font-weight: 300;\n}\n.list-friend[data-v-520e3a02]{\n    min-height: 73px;\n}\n.search-result[data-v-520e3a02]{\n    min-height: 319px;\n}\n.bg-search .search-result[data-v-520e3a02] {\n    background: url(/img/theme/social.png) center no-repeat;\n    background-size: contain;\n}\n", ""]);
+exports.push([module.i, "\n.box_search input[data-v-520e3a02]::-webkit-input-placeholder, .box_search input[data-v-520e3a02]{\n    color: #ffffff;\n    font-size: 15px;\n    font-weight: 300;\n}\n.list-friend[data-v-520e3a02]{\n    min-height: 73px;\n}\n.search-result[data-v-520e3a02]{\n    min-height: 319px;\n}\n.bg-search .search-result[data-v-520e3a02] {\n    background: url(/img/theme/social.png) center no-repeat;\n    background-size: contain;\n}\n.result-box>*+.search-overlay[data-v-520e3a02] {\n    position: absolute;\n    width: 100%;\n    height: -webkit-fill-available;\n    background: #192734;\n    opacity: 1;\n    visibility: visible;\n}\n.search-overlay[data-v-520e3a02]{\n    opacity: 0;\n    visibility: hidden;\n}\n", ""]);
 
 // exports
 
@@ -59676,7 +59684,11 @@ var render = function() {
     "div",
     {
       staticClass: "site-header",
-      style: { width: _vm.width + "px", left: _vm.left + "px" }
+      style: {
+        width: _vm.width + "px",
+        left: _vm.left + "px",
+        height: _vm.users.length + _vm.tweets.length > 0 ? "100%" : ""
+      }
     },
     [
       !_vm.isSearch
@@ -59806,7 +59818,27 @@ var render = function() {
                       _vm.search = $event.target.value
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-primary ml-auto",
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        _vm.isSearch = !_vm.isSearch
+                      }
+                    }
+                  },
+                  [
+                    _c("svg", { staticClass: "fs22" }, [
+                      _c("svg", [
+                        _c("use", { attrs: { "xlink:href": "#i-back" } })
+                      ])
+                    ])
+                  ]
+                )
               ]
             ),
             _vm._v(" "),
@@ -59857,7 +59889,7 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "news-feed-item d-flex bg-dark-1 my-2 pt-2",
+                            "news-feed-item d-flex bg-dark-1 mt-3 pt-2",
                           class: tweet.repling
                             ? "_replying"
                             : "" +

@@ -1,7 +1,7 @@
 <template>
     <div
         class="site-header"
-        :style="{ width: width + 'px' , left: left + 'px' }"
+        :style="{ width: width + 'px' , left: left + 'px', height: users.length+tweets.length > 0 ? '100%' : ''}"
     >
         <div class="container" v-if="!isSearch">
             <div
@@ -51,6 +51,13 @@
             <div class="h50 bg-dark-1 search_form d-flex fs18 text-white align-items-center py-1 px-3 br10">
                 <svg class="fs22"><use xlink:href="#i-search"></use></svg>
                 <input v-model="search" class="w-100 ml20 text-white" placeholder="Tìm kiếm Twitter">
+                <a
+                    href="javascript:void(0)"
+                    class="text-primary ml-auto"
+                    @click="isSearch = !isSearch"
+                >
+                    <svg class="fs22"><svg><use xlink:href="#i-back"></use></svg></svg>
+                </a>
             </div>
             <div
                 class="result-box bg-dark-2 pt-2"
@@ -76,7 +83,7 @@
                 >
                     <div
                         v-for="(tweet, index) in tweets"
-                        class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
+                        class="news-feed-item d-flex bg-dark-1 mt-3 pt-2"
                         :class=" tweet.repling ? '_replying' : '' + ' tweet-' + tweet.id + ' author-' + tweet.author_id "
                     >
                         <div class="user-meta col-auto">
@@ -167,7 +174,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="search-overlay"></div>
+                <div class="search-overlay">
+                </div>
             </div>
         </div>
     </div>
@@ -264,5 +272,17 @@
     .bg-search .search-result {
         background: url(/img/theme/social.png) center no-repeat;
         background-size: contain;
+    }
+    .result-box>*+.search-overlay {
+        position: absolute;
+        width: 100%;
+        height: -webkit-fill-available;
+        background: #192734;
+        opacity: 1;
+        visibility: visible;
+    }
+    .search-overlay{
+        opacity: 0;
+        visibility: hidden;
     }
 </style>

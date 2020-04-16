@@ -80,7 +80,7 @@ class TweetController extends Controller
      */
     public function getDataNewsFeed(int $limit, int $page)
     {
-        return Tweet::orderBy('created_at', 'DESC')
+        return Tweet::whereIn('user_id', current_user()->following->pluck('id')->toArray())->orderBy('created_at', 'DESC')
             ->skip($limit * $page)
             ->take($limit)
             ->get();
