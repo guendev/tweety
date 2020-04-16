@@ -75,6 +75,8 @@
                     </div>
                     <button
                         type="submit" class="btn btn-primary br10 px-3 py-2 btn-block"
+                        :disabled="name==='' || user_name==='' || email ==='' || pass ==='' || repass==='' || repass !== pass"
+                        :class="name==='' || user_name==='' || email ==='' || pass ==='' || repass ==='' || repass !== pass ? 'btn-dark' : 'btn-primary'"
                     >
                         Register Account
                     </button>
