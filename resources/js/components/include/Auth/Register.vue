@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-lg-5 d-none d-lg-block pr-0">
+    <div class="row position-absolute" :key="key">
+        <div class="col-lg-5 d-none d-lg-block px-0">
             <img class="img_100" src="/img/theme/register.jpeg" alt="Register">
         </div>
         <div class="col-lg-7">
@@ -109,7 +109,8 @@
                 email: '',
                 pass: '',
                 msg: '',
-                completed: false
+                completed: false,
+                key: 'register'
             }
         },
         methods: {

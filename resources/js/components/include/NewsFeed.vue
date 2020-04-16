@@ -3,7 +3,7 @@
         <div
             v-for="(tweet, index) in tweetsData"
             class="news-feed-item d-flex bg-dark-1 my-2 pt-2"
-            :class=" tweet.repling ? '_replying' : '' + ' tweet-' + tweet.id + ' author-' + tweet.author_id "
+            :class=" tweet.repling ? '_replying' : ''"
         >
             <div class="user-meta col-auto">
                 <div class="g_thumb circle">

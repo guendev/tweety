@@ -1,94 +1,96 @@
 <template>
-    <form-edit-profile
-        v-if="is_editting && user_can"
-        :userid="user_data.id"
-        :is_edit="is_editting"
-        @back="updatedProfile"
-    ></form-edit-profile>
-    <div
-        v-else
-        class="profile-info"
-    >
-        <div class="profile-cover">
-            <div class="container bg-black overflow-hidden px-0">
-                <div class="g_thumb">
-                    <img :alt="user_data.name" :src="user_data.cover ? user_data.cover : '/img/theme/tweety.jpg'">
+    <transition v-if="is_editting && user_can" name="profilex">
+        <form-edit-profile
+            :userid="user_data.id"
+            :is_edit="is_editting"
+            @back="updatedProfile"
+        ></form-edit-profile>
+    </transition>
+    <transition v-else name="profilex">
+        <div
+            class="profile-info"
+        >
+            <div class="profile-cover">
+                <div class="container bg-black overflow-hidden px-0">
+                    <div class="g_thumb">
+                        <img :alt="user_data.name" :src="user_data.cover ? user_data.cover : '/img/theme/tweety.jpg'">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="profile-meta">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4 position-relative">
-                        <div class="profile-avatar rounded-circle overflow-hidden">
-                            <a href="">
-                                <img class="img_100" :alt="user_data.name" :src="user_data.avatar ? user_data.avatar : '/img/theme/avatar-default.jpg'">
-                            </a>
+            <div class="profile-meta">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4 position-relative">
+                            <div class="profile-avatar rounded-circle overflow-hidden">
+                                <a href="">
+                                    <img class="img_100" :alt="user_data.name" :src="user_data.avatar ? user_data.avatar : '/img/theme/avatar-default.jpg'">
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="profile-action text-right mt-2 d-flex">
+                        <div class="col">
+                            <div class="profile-action text-right mt-2 d-flex">
 
-                            <a v-if="user_can"
-                               class="btn btn-outline-primary font-weight-bold text-primary br30"
-                               @click="editProfile()"
-                            >Edit Profile </a>
+                                <a v-if="user_can"
+                                   class="btn btn-outline-primary font-weight-bold text-primary br30"
+                                   @click="editProfile()"
+                                >Edit Profile </a>
 
-                            <form
-                                v-if="!user_can"
-                                class="ml-2"
-                                @submit.prevent="followAction"
-                            >
-                                <button
-                                    class="btn btn-outline-primary font-weight-bold text-primary br30"
+                                <form
+                                    v-if="!user_can"
+                                    class="ml-2"
+                                    @submit.prevent="followAction"
                                 >
-                                    {{ following ? 'Unfollow' : 'Follow' }}
-                                </button>
+                                    <button
+                                        class="btn btn-outline-primary font-weight-bold text-primary br30"
+                                    >
+                                        {{ following ? 'Unfollow' : 'Follow' }}
+                                    </button>
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="col-12 mt-2">
-                        <div class="profile-info">
-                            <div class="profile-info-item">
-                                <h4 class="font-weight-bold fs26 text-white mb-0">{{ user_data.name }}</h4>
-                                <p class="text-muted">ID: {{ user_data.id }}</p>
-                            </div>
-                            <div class="profile-info-item">
-                                <p class="text-white">{{ user_data.story }}</p>
-                            </div>
-                            <div class="profile-info-item my-2 d-flex">
-                                <div class="w-50 text-muted">
-                                    <svg class="fs20">
-                                        <use xlink:href="#i-location"></use>
-                                    </svg>
-                                    <span>{{ user_data.local }}</span>
+                        <div class="col-12 mt-2">
+                            <div class="profile-info">
+                                <div class="profile-info-item">
+                                    <h4 class="font-weight-bold fs26 text-white mb-0">{{ user_data.name }}</h4>
+                                    <p class="text-muted">ID: {{ user_data.id }}</p>
                                 </div>
-                                <div class="w-50 text-muted">
-                                    <svg class="fs20">
-                                        <use xlink:href="#i-time"></use>
-                                    </svg>
-                                    <span>Đã tham gia từ {{ formatTime(user_data.created_at) }}</span>
+                                <div class="profile-info-item">
+                                    <p class="text-white">{{ user_data.story }}</p>
                                 </div>
-                            </div>
-                            <div class="profile-info-item my-2 text-white d-inline-flex">
-                                <div class="mr-3">
-                                    <span>{{ follow_data.count_following }}</span>
-                                    <span class="text-muted">Theo dõi</span>
+                                <div class="profile-info-item my-2 d-flex">
+                                    <div class="w-50 text-muted">
+                                        <svg class="fs20">
+                                            <use xlink:href="#i-location"></use>
+                                        </svg>
+                                        <span>{{ user_data.local }}</span>
+                                    </div>
+                                    <div class="w-50 text-muted">
+                                        <svg class="fs20">
+                                            <use xlink:href="#i-time"></use>
+                                        </svg>
+                                        <span>Đã tham gia từ {{ formatTime(user_data.created_at) }}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span>{{ follow_data.count_follower }}</span>
-                                    <span class="text-muted">Người theo dõi</span>
+                                <div class="profile-info-item my-2 text-white d-inline-flex">
+                                    <div class="mr-3">
+                                        <span>{{ follow_data.count_following }}</span>
+                                        <span class="text-muted">Following</span>
+                                    </div>
+                                    <div>
+                                        <span>{{ follow_data.count_follower }}</span>
+                                        <span class="text-muted">Follower</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="profile-info-item text-muted d-flex align-items-center">
-
-
+                                <div
+                                    class="profile-info-item text-muted d-flex align-items-center"
+                                    v-if="follow_data.samefollow.length > 0"
+                                >
                                 <span
-                                    v-for="(follow, index) in follow_data.follow" :key="index"
+                                    v-for="(follow, index) in follow_data.samefollow" :key="index"
                                     class="follower-item overflow-hidden rounded-circle mr-n2"
                                 >
                                     <img
@@ -97,22 +99,25 @@
                                         :src="follow.avatar"
                                     >
                                 </span>
-
                                 <span class="fs12 ml-3">
-                                <span
-                                    class="our-follow-name"
-                                    v-for="(follow, index) in follow_data.follow" :key="index"
-                                > {{ follow.name }} </span>
-                                <span> {{ follow_data.count_following }} và người khác</span>
-                            </span>
+
+                                    <span
+                                        class="our-follow-name"
+                                        v-for="(follow, index) in follow_data.follow" :key="index"
+                                    > {{ follow.name }} </span>
+
+                                    <span>{{ follow_data.samefollow.length > 3 ? 'và ' + follow_data.samefollow.length - 3 + ' người khác' : '' }} được 2 bạn heo dõi </span>
+
+                                 </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>

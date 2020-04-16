@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $follow_data=[];
         $follow_data['count_following'] = $user->following()->count();
         $follow_data['count_follower'] = $user->follower()->count();
-        $follow_data['follow'] = $user->sameFollow();
+        $follow_data['samefollow'] = $user->sameFollow();
         return view('layouts.profile.index', compact('user', 'profile_data', 'follow_data'));
     }
 

@@ -31,7 +31,10 @@
         <div class="profile-meta">
             <div class="container">
                 <div class="row">
-                    <div class="col-4 position-relative">
+                    <div
+                        class="col-4 position-relative"
+                        style="height: 45px"
+                    >
                         <div class="profile-avatar rounded-circle overflow-hidden">
                             <label for="avatar" class="w-100 position-relative cover-overlay">
                                 <svg class="ra-center z1 fs24 text-light"><use xlink:href="#i-camera"></use></svg>

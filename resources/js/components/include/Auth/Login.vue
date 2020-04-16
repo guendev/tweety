@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-lg-6 d-none d-lg-block overflow-hidden">
+    <div class="position-absolute row" :key="key">
+        <div class="col-lg-6 d-none d-lg-block overflow-hidden px-0">
             <img class="img_100" src="/img/theme/login.jpeg" alt="Login">
         </div>
         <div class="col-lg-6">
@@ -75,7 +75,8 @@
                 email: '',
                 pass: '',
                 remember: false,
-                arlet: false
+                arlet: false,
+                key: 'login'
             }
         },
         methods: {

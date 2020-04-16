@@ -75,4 +75,21 @@ class Controller extends BaseController
         ];
         return $tweets_data;
     }
+    /**
+     * @param $users
+     * @param array $users_data
+     * @return array
+     */
+    public function getUserAttr($users, array $users_data): array
+    {
+        foreach ($users as $user) {
+            $users_data[] = [
+                'id'    => $user->id,
+                'name' => $user->name,
+                'avatar' => $user->avatar,
+                'user_name' => $user->user_name
+            ];
+        }
+        return $users_data;
+    }
 }

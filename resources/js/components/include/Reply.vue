@@ -33,38 +33,43 @@
             </div>
         </div>
 
-
-        <div
-            v-for="reply in replies"
-            class="my-1"
+        <transition-group
+            name="headerx"
+            tag="div"
         >
-            <div class="news-feed-item d-flex bg-dark-1 my-1 pt-2 py-2">
-                <div class="user-meta col-auto">
-                    <div class="g_thumb circle">
-                        <img
-                            :alt="reply.author_name"
-                            :src="reply.author_avatar"
-                        >
+            <div
+                v-for="(reply, index) in replies"
+                class="my-1"
+                :key="index+1"
+            >
+                <div class="news-feed-item d-flex bg-dark-1 my-1 pt-2 py-2">
+                    <div class="user-meta col-auto">
+                        <div class="g_thumb circle">
+                            <img
+                                :alt="reply.author_name"
+                                :src="reply.author_avatar"
+                            >
+                        </div>
                     </div>
-                </div>
-                <div class="tweet-box col w-auto pl-0">
-                    <div class="tweet-title">
-                        <h5>
-                            <a
-                                :href="'/@' + reply.author_user_name "
-                                class="text-white fs16"
-                            >{{ reply.author_name }}</a>
-                            <a class="text-muted fs14 ml4">
-                                <i class="mr4 fs12">. {{ formatTime(reply.created_at) }} </i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div class="tweet-content">
-                        <div class="tweet-des text-white font-weight-light">{{ reply.content }}</div>
+                    <div class="tweet-box col w-auto pl-0">
+                        <div class="tweet-title">
+                            <h5>
+                                <a
+                                    :href="'/@' + reply.author_user_name "
+                                    class="text-white fs16"
+                                >{{ reply.author_name }}</a>
+                                <a class="text-muted fs14 ml4">
+                                    <i class="mr4 fs12">. {{ formatTime(reply.created_at) }} </i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div class="tweet-content">
+                            <div class="tweet-des text-white font-weight-light">{{ reply.content }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </transition-group>
     </div>
 </template>
 

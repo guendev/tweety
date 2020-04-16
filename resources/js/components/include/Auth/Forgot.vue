@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-lg-6 d-none d-lg-block bg-password-image">
+    <div class="row position-absolute" :key="key">
+        <div class="col-lg-6 d-none d-lg-block px-0 bg-password-image">
             <img class="img_100" src="/img/theme/forgot.jpeg" alt="Forgot">
         </div>
         <div class="col-lg-6">
@@ -41,7 +41,12 @@
 
 <script>
     export default {
-        name: "Forgot"
+        name: "Forgot",
+        data() {
+            return {
+                key: 'forgot'
+            }
+        },
     }
 </script>
 

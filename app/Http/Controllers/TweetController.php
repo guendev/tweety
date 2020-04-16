@@ -80,27 +80,12 @@ class TweetController extends Controller
      */
     public function getDataNewsFeed(int $limit, int $page)
     {
-        return Tweet::whereIn('user_id', current_user()->following->pluck('id')->toArray())->orderBy('created_at', 'DESC')
+        $list_following = current_user()->following->pluck('id')->toArray();
+        array_push($list_following, current_user()->id);
+        return Tweet::whereIn('user_id', $list_following)->orderBy('created_at', 'DESC')
             ->skip($limit * $page)
             ->take($limit)
             ->get();
-    }
-
-    /**
-     * @param $users
-     * @param array $users_data
-     * @return array
-     */
-    public function getUserAttr($users, array $users_data): array
-    {
-        foreach ($users as $user) {
-            $users_data[] = [
-                'name' => $user->name,
-                'avatar' => $user->avatar,
-                'user_name' => $user->user_name
-            ];
-        }
-        return $users_data;
     }
 
 }

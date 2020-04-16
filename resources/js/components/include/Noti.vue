@@ -1,9 +1,14 @@
 <template>
-    <div class="position-absolute shadow-sm z100 mt-2 mx-3 r0">
+    <transition-group
+        name="headerx"
+        tag="div"
+        class="position-absolute shadow-sm z100 mt-2 mx-3 r0"
+    >
         <div
             v-for="(noti, index) in notis"
             class="text-light mb-3 bg-primary p-3 br10 position-relative"
             style="box-sizing: border-box;"
+            :key="index+1"
         >
             <div class="el-notification__group">
                 <h2 class="el-notification__title fs18">{{noti.title}}</h2>
@@ -14,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </transition-group>
 </template>
 
 <script>

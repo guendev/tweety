@@ -2208,6 +2208,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "form-edit-profile",
@@ -2376,6 +2379,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2762,7 +2770,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Forgot"
+  name: "Forgot",
+  data: function data() {
+    return {
+      key: 'forgot'
+    };
+  }
 });
 
 /***/ }),
@@ -2852,7 +2865,8 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       pass: '',
       remember: false,
-      arlet: false
+      arlet: false,
+      key: 'login'
     };
   },
   methods: {
@@ -2997,7 +3011,8 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       pass: '',
       msg: '',
-      completed: false
+      completed: false,
+      key: 'register'
     };
   },
   methods: {
@@ -3219,6 +3234,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3235,7 +3260,8 @@ __webpack_require__.r(__webpack_exports__);
       search: '',
       users: [],
       tweets: [],
-      wait: null
+      wait: null,
+      test: false
     };
   },
   methods: {
@@ -3552,6 +3578,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Noti",
@@ -3604,6 +3635,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -57981,54 +58017,65 @@ var render = function() {
     _c("div", { staticClass: "profile-meta" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-4 position-relative" }, [
-            _c(
-              "div",
-              { staticClass: "profile-avatar rounded-circle overflow-hidden" },
-              [
-                _c(
-                  "label",
-                  {
-                    staticClass: "w-100 position-relative cover-overlay",
-                    attrs: { for: "avatar" }
-                  },
-                  [
-                    _c("svg", { staticClass: "ra-center z1 fs24 text-light" }, [
-                      _c("use", { attrs: { "xlink:href": "#i-camera" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("img", {
-                      staticClass: "img_100",
-                      attrs: {
-                        alt: "Forek",
-                        src: _vm.formData.avatar
-                          ? _vm.formData.avatar
-                          : "/img/theme/avatar-default.jpg",
-                        alt: _vm.formData.name
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      ref: "avatar",
-                      staticClass: "hide w-100 h-100 l0",
-                      attrs: {
-                        id: "avatar",
-                        accept: "image/png, image/jpeg, image/jpg",
-                        type: "file",
-                        form: "formImg",
-                        name: "avatar"
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.uploadImg($event)
+          _c(
+            "div",
+            {
+              staticClass: "col-4 position-relative",
+              staticStyle: { height: "45px" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "profile-avatar rounded-circle overflow-hidden"
+                },
+                [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "w-100 position-relative cover-overlay",
+                      attrs: { for: "avatar" }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        { staticClass: "ra-center z1 fs24 text-light" },
+                        [_c("use", { attrs: { "xlink:href": "#i-camera" } })]
+                      ),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img_100",
+                        attrs: {
+                          alt: "Forek",
+                          src: _vm.formData.avatar
+                            ? _vm.formData.avatar
+                            : "/img/theme/avatar-default.jpg",
+                          alt: _vm.formData.name
                         }
-                      }
-                    })
-                  ]
-                )
-              ]
-            )
-          ]),
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "avatar",
+                        staticClass: "hide w-100 h-100 l0",
+                        attrs: {
+                          id: "avatar",
+                          accept: "image/png, image/jpeg, image/jpg",
+                          type: "file",
+                          form: "formImg",
+                          name: "avatar"
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.uploadImg($event)
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
             _c(
@@ -58561,236 +58608,267 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.is_editting && _vm.user_can
-    ? _c("form-edit-profile", {
-        attrs: { userid: _vm.user_data.id, is_edit: _vm.is_editting },
-        on: { back: _vm.updatedProfile }
-      })
-    : _c("div", { staticClass: "profile-info" }, [
-        _c("div", { staticClass: "profile-cover" }, [
-          _c(
-            "div",
-            { staticClass: "container bg-black overflow-hidden px-0" },
-            [
-              _c("div", { staticClass: "g_thumb" }, [
-                _c("img", {
-                  attrs: {
-                    alt: _vm.user_data.name,
-                    src: _vm.user_data.cover
-                      ? _vm.user_data.cover
-                      : "/img/theme/tweety.jpg"
-                  }
-                })
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "profile-meta" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-4 position-relative" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "profile-avatar rounded-circle overflow-hidden"
-                  },
-                  [
-                    _c("a", { attrs: { href: "" } }, [
-                      _c("img", {
-                        staticClass: "img_100",
-                        attrs: {
-                          alt: _vm.user_data.name,
-                          src: _vm.user_data.avatar
-                            ? _vm.user_data.avatar
-                            : "/img/theme/avatar-default.jpg"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col" }, [
-                _c(
-                  "div",
-                  { staticClass: "profile-action text-right mt-2 d-flex" },
-                  [
-                    _vm.user_can
-                      ? _c(
-                          "a",
-                          {
-                            staticClass:
-                              "btn btn-outline-primary font-weight-bold text-primary br30",
-                            on: {
-                              click: function($event) {
-                                return _vm.editProfile()
-                              }
-                            }
-                          },
-                          [_vm._v("Edit Profile ")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.user_can
-                      ? _c(
-                          "form",
-                          {
-                            staticClass: "ml-2",
-                            on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                                return _vm.followAction($event)
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-outline-primary font-weight-bold text-primary br30"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.following ? "Unfollow" : "Follow"
-                                    ) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 mt-2" }, [
-                _c("div", { staticClass: "profile-info" }, [
-                  _c("div", { staticClass: "profile-info-item" }, [
-                    _c(
-                      "h4",
-                      { staticClass: "font-weight-bold fs26 text-white mb-0" },
-                      [_vm._v(_vm._s(_vm.user_data.name))]
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-muted" }, [
-                      _vm._v("ID: " + _vm._s(_vm.user_data.id))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "profile-info-item" }, [
-                    _c("p", { staticClass: "text-white" }, [
-                      _vm._v(_vm._s(_vm.user_data.story))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "profile-info-item my-2 d-flex" }, [
-                    _c("div", { staticClass: "w-50 text-muted" }, [
-                      _c("svg", { staticClass: "fs20" }, [
-                        _c("use", { attrs: { "xlink:href": "#i-location" } })
-                      ]),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(_vm.user_data.local))])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-50 text-muted" }, [
-                      _c("svg", { staticClass: "fs20" }, [
-                        _c("use", { attrs: { "xlink:href": "#i-time" } })
-                      ]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _vm._v(
-                          "Đã tham gia từ " +
-                            _vm._s(_vm.formatTime(_vm.user_data.created_at))
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
+    ? _c(
+        "transition",
+        { attrs: { name: "profilex" } },
+        [
+          _c("form-edit-profile", {
+            attrs: { userid: _vm.user_data.id, is_edit: _vm.is_editting },
+            on: { back: _vm.updatedProfile }
+          })
+        ],
+        1
+      )
+    : _c("transition", { attrs: { name: "profilex" } }, [
+        _c("div", { staticClass: "profile-info" }, [
+          _c("div", { staticClass: "profile-cover" }, [
+            _c(
+              "div",
+              { staticClass: "container bg-black overflow-hidden px-0" },
+              [
+                _c("div", { staticClass: "g_thumb" }, [
+                  _c("img", {
+                    attrs: {
+                      alt: _vm.user_data.name,
+                      src: _vm.user_data.cover
+                        ? _vm.user_data.cover
+                        : "/img/theme/tweety.jpg"
+                    }
+                  })
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "profile-meta" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-4 position-relative" }, [
                   _c(
                     "div",
                     {
                       staticClass:
-                        "profile-info-item my-2 text-white d-inline-flex"
+                        "profile-avatar rounded-circle overflow-hidden"
                     },
                     [
-                      _c("div", { staticClass: "mr-3" }, [
-                        _c("span", [
-                          _vm._v(_vm._s(_vm.follow_data.count_following))
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "text-muted" }, [
-                          _vm._v("Theo dõi")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c("span", [
-                          _vm._v(_vm._s(_vm.follow_data.count_follower))
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "text-muted" }, [
-                          _vm._v("Người theo dõi")
-                        ])
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          staticClass: "img_100",
+                          attrs: {
+                            alt: _vm.user_data.name,
+                            src: _vm.user_data.avatar
+                              ? _vm.user_data.avatar
+                              : "/img/theme/avatar-default.jpg"
+                          }
+                        })
                       ])
                     ]
-                  ),
-                  _vm._v(" "),
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
                   _c(
                     "div",
-                    {
-                      staticClass:
-                        "profile-info-item text-muted d-flex align-items-center"
-                    },
+                    { staticClass: "profile-action text-right mt-2 d-flex" },
                     [
-                      _vm._l(_vm.follow_data.follow, function(follow, index) {
-                        return _c(
-                          "span",
-                          {
-                            key: index,
-                            staticClass:
-                              "follower-item overflow-hidden rounded-circle mr-n2"
-                          },
-                          [
-                            _c("img", {
-                              staticClass: "img_reponsive",
-                              attrs: { alt: "", src: follow.avatar }
-                            })
-                          ]
-                        )
-                      }),
+                      _vm.user_can
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn btn-outline-primary font-weight-bold text-primary br30",
+                              on: {
+                                click: function($event) {
+                                  return _vm.editProfile()
+                                }
+                              }
+                            },
+                            [_vm._v("Edit Profile ")]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
+                      !_vm.user_can
+                        ? _c(
+                            "form",
+                            {
+                              staticClass: "ml-2",
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.followAction($event)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-outline-primary font-weight-bold text-primary br30"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(
+                                        _vm.following ? "Unfollow" : "Follow"
+                                      ) +
+                                      "\n                                "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mt-2" }, [
+                  _c("div", { staticClass: "profile-info" }, [
+                    _c("div", { staticClass: "profile-info-item" }, [
                       _c(
-                        "span",
-                        { staticClass: "fs12 ml-3" },
-                        [
-                          _vm._l(_vm.follow_data.follow, function(
-                            follow,
-                            index
-                          ) {
-                            return _c(
-                              "span",
-                              { key: index, staticClass: "our-follow-name" },
-                              [_vm._v(" " + _vm._s(follow.name) + " ")]
-                            )
-                          }),
+                        "h4",
+                        {
+                          staticClass: "font-weight-bold fs26 text-white mb-0"
+                        },
+                        [_vm._v(_vm._s(_vm.user_data.name))]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-muted" }, [
+                        _vm._v("ID: " + _vm._s(_vm.user_data.id))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "profile-info-item" }, [
+                      _c("p", { staticClass: "text-white" }, [
+                        _vm._v(_vm._s(_vm.user_data.story))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "profile-info-item my-2 d-flex" },
+                      [
+                        _c("div", { staticClass: "w-50 text-muted" }, [
+                          _c("svg", { staticClass: "fs20" }, [
+                            _c("use", {
+                              attrs: { "xlink:href": "#i-location" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.user_data.local))])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "w-50 text-muted" }, [
+                          _c("svg", { staticClass: "fs20" }, [
+                            _c("use", { attrs: { "xlink:href": "#i-time" } })
+                          ]),
                           _vm._v(" "),
                           _c("span", [
                             _vm._v(
-                              " " +
-                                _vm._s(_vm.follow_data.count_following) +
-                                " và người khác"
+                              "Đã tham gia từ " +
+                                _vm._s(_vm.formatTime(_vm.user_data.created_at))
                             )
                           ])
-                        ],
-                        2
-                      )
-                    ],
-                    2
-                  )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "profile-info-item my-2 text-white d-inline-flex"
+                      },
+                      [
+                        _c("div", { staticClass: "mr-3" }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.follow_data.count_following))
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "text-muted" }, [
+                            _vm._v("Following")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.follow_data.count_follower))
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "text-muted" }, [
+                            _vm._v("Follower")
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.follow_data.samefollow.length > 0
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "profile-info-item text-muted d-flex align-items-center"
+                          },
+                          [
+                            _vm._l(_vm.follow_data.samefollow, function(
+                              follow,
+                              index
+                            ) {
+                              return _c(
+                                "span",
+                                {
+                                  key: index,
+                                  staticClass:
+                                    "follower-item overflow-hidden rounded-circle mr-n2"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "img_reponsive",
+                                    attrs: { alt: "", src: follow.avatar }
+                                  })
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "fs12 ml-3" },
+                              [
+                                _vm._l(_vm.follow_data.follow, function(
+                                  follow,
+                                  index
+                                ) {
+                                  return _c(
+                                    "span",
+                                    {
+                                      key: index,
+                                      staticClass: "our-follow-name"
+                                    },
+                                    [_vm._v(" " + _vm._s(follow.name) + " ")]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.follow_data.samefollow.length > 3
+                                        ? "và " +
+                                            _vm.follow_data.samefollow.length -
+                                            3 +
+                                            " người khác"
+                                        : ""
+                                    ) + " được 2 bạn heo dõi "
+                                  )
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          2
+                        )
+                      : _vm._e()
+                  ])
                 ])
               ])
             ])
@@ -59004,7 +59082,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", { key: _vm.key, staticClass: "row position-absolute" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-6" }, [
@@ -59059,7 +59137,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "col-lg-6 d-none d-lg-block bg-password-image" },
+      { staticClass: "col-lg-6 d-none d-lg-block px-0 bg-password-image" },
       [
         _c("img", {
           staticClass: "img_100",
@@ -59133,7 +59211,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", { key: _vm.key, staticClass: "position-absolute row" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-6" }, [
@@ -59329,7 +59407,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "col-lg-6 d-none d-lg-block overflow-hidden" },
+      { staticClass: "col-lg-6 d-none d-lg-block overflow-hidden px-0" },
       [
         _c("img", {
           staticClass: "img_100",
@@ -59370,7 +59448,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", { key: _vm.key, staticClass: "row position-absolute" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-7" }, [
@@ -59620,7 +59698,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-5 d-none d-lg-block pr-0" }, [
+    return _c("div", { staticClass: "col-lg-5 d-none d-lg-block px-0" }, [
       _c("img", {
         staticClass: "img_100",
         attrs: { src: "/img/theme/register.jpeg", alt: "Register" }
@@ -59691,503 +59769,650 @@ var render = function() {
       }
     },
     [
-      !_vm.isSearch
-        ? _c("div", { staticClass: "container" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "row bg-dark-1 h50 fs18 justify-content-between align-items-center"
-              },
-              [
-                _vm.$route.fullPath !== "/"
-                  ? _c("div", { staticClass: "col-auto" }, [
+      _c(
+        "transition-group",
+        {
+          staticClass: "position-relative",
+          attrs: { name: "headerx", tag: "div" }
+        },
+        [
+          !_vm.isSearch
+            ? _c(
+                "div",
+                {
+                  key: _vm.isSearch,
+                  staticClass: "container position-absolute"
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "row bg-dark-1 h50 fs18 justify-content-between align-items-center"
+                    },
+                    [
+                      _vm.$route.fullPath !== "/"
+                        ? _c("div", { staticClass: "col-auto" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "text-light",
+                                attrs: { href: "javascript:void(0)" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.back()
+                                  }
+                                }
+                              },
+                              [
+                                _c("svg", { staticClass: "fs24" }, [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#i-back" }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
-                        "a",
+                        "div",
                         {
-                          staticClass: "text-light",
-                          attrs: { href: "javascript:void(0)" },
-                          on: {
-                            click: function($event) {
-                              return _vm.back()
-                            }
-                          }
+                          staticClass:
+                            "text-light mr-auto col-auto d-flex flex-column"
                         },
                         [
-                          _c("svg", { staticClass: "fs24" }, [
-                            _c("use", { attrs: { "xlink:href": "#i-back" } })
-                          ])
+                          _c("div", { staticClass: "site-name" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.$route.fullPath === "/"
+                                  ? "Trang Chủ"
+                                  : _vm.title === ""
+                                  ? "Back"
+                                  : _vm.title
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm.$route.fullPath !== "/" && _vm.title !== ""
+                            ? _c(
+                                "small",
+                                { staticClass: "text-muted fs12 mb-2" },
+                                [_vm._v(_vm._s(_vm.subHeader))]
+                              )
+                            : _vm._e()
                         ]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "text-light mr-auto col-auto d-flex flex-column"
-                  },
-                  [
-                    _c("div", { staticClass: "site-name" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.$route.fullPath === "/"
-                            ? "Trang Chủ"
-                            : _vm.title === ""
-                            ? "Back"
-                            : _vm.title
-                        )
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm.$route.fullPath !== "/" && _vm.title !== ""
-                      ? _c("small", { staticClass: "text-muted fs12 mb-2" }, [
-                          _vm._v(_vm._s(_vm.subHeader))
-                        ])
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-auto ml-auto d-flex" }, [
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-auto ml-auto d-flex" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-primary mr-3",
+                            attrs: { href: "javascript:void(0)" },
+                            on: {
+                              click: function($event) {
+                                _vm.isSearch = !_vm.isSearch
+                              }
+                            }
+                          },
+                          [
+                            _c("svg", { staticClass: "fs22" }, [
+                              _c("use", {
+                                attrs: { "xlink:href": "#i-search" }
+                              })
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.$route.fullPath === "/"
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "text-primary",
+                                attrs: { href: "javascript:void(0)" }
+                              },
+                              [
+                                _c("svg", { staticClass: "fs24" }, [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#i-reload" }
+                                  })
+                                ])
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                ]
+              )
+            : _c(
+                "div",
+                {
+                  key: _vm.isSearch,
+                  staticClass: "box_search position-absolute w-100"
+                },
+                [
                   _c(
-                    "a",
+                    "div",
                     {
-                      staticClass: "text-primary mr-3",
-                      attrs: { href: "javascript:void(0)" },
-                      on: {
-                        click: function($event) {
-                          _vm.isSearch = !_vm.isSearch
-                        }
-                      }
+                      staticClass:
+                        "h50 bg-dark-1 search_form d-flex fs18 text-white align-items-center py-1 px-3 br10"
                     },
                     [
                       _c("svg", { staticClass: "fs22" }, [
                         _c("use", { attrs: { "xlink:href": "#i-search" } })
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.$route.fullPath === "/"
-                    ? _c(
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
+                          }
+                        ],
+                        staticClass: "w-100 ml20 text-white",
+                        attrs: { placeholder: "Tìm kiếm Twitter" },
+                        domProps: { value: _vm.search },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.search = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
                         "a",
                         {
-                          staticClass: "text-primary",
-                          attrs: { href: "javascript:void(0)" }
+                          staticClass: "text-primary ml-auto",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              _vm.isSearch = !_vm.isSearch
+                            }
+                          }
                         },
                         [
-                          _c("svg", { staticClass: "fs24" }, [
-                            _c("use", { attrs: { "xlink:href": "#i-reload" } })
+                          _c("svg", { staticClass: "fs22" }, [
+                            _c("svg", [
+                              _c("use", { attrs: { "xlink:href": "#i-back" } })
+                            ])
                           ])
                         ]
                       )
-                    : _vm._e()
-                ])
-              ]
-            )
-          ])
-        : _c("div", { staticClass: "box_search" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "h50 bg-dark-1 search_form d-flex fs18 text-white align-items-center py-1 px-3 br10"
-              },
-              [
-                _c("svg", { staticClass: "fs22" }, [
-                  _c("use", { attrs: { "xlink:href": "#i-search" } })
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search,
-                      expression: "search"
-                    }
-                  ],
-                  staticClass: "w-100 ml20 text-white",
-                  attrs: { placeholder: "Tìm kiếm Twitter" },
-                  domProps: { value: _vm.search },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.search = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "text-primary ml-auto",
-                    attrs: { href: "javascript:void(0)" },
-                    on: {
-                      click: function($event) {
-                        _vm.isSearch = !_vm.isSearch
-                      }
-                    }
-                  },
-                  [
-                    _c("svg", { staticClass: "fs22" }, [
-                      _c("svg", [
-                        _c("use", { attrs: { "xlink:href": "#i-back" } })
-                      ])
-                    ])
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "result-box bg-dark-2 pt-2" }, [
-              _vm.users.length > 0
-                ? _c("div", { staticClass: "container pt-3 pb-2 bg-dark-1" }, [
-                    _c(
-                      "div",
-                      { staticClass: "row list-friend" },
-                      _vm._l(_vm.users, function(friend) {
-                        return _c(
-                          "div",
-                          {
-                            staticClass:
-                              " col-3 col-md-2 justify-content-center align-items-center"
-                          },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "g_thumb rounded-circle" },
-                              [
-                                _c("img", {
-                                  attrs: {
-                                    src: friend.avatar,
-                                    alt: friend.name
-                                  }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("small", { staticClass: "text-muted mt-1" }, [
-                              _vm._v("@" + _vm._s(friend.user_name))
-                            ])
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.tweets.length > 0
-                ? _c(
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "div",
-                    { staticClass: "search-result mt-3" },
-                    _vm._l(_vm.tweets, function(tweet, index) {
-                      return _c(
-                        "div",
-                        {
-                          staticClass:
-                            "news-feed-item d-flex bg-dark-1 mt-3 pt-2",
-                          class: tweet.repling
-                            ? "_replying"
-                            : "" +
-                              " tweet-" +
-                              tweet.id +
-                              " author-" +
-                              tweet.author_id
-                        },
-                        [
-                          _c("div", { staticClass: "user-meta col-auto" }, [
-                            _c("div", { staticClass: "g_thumb circle" }, [
-                              _c("img", {
-                                attrs: {
-                                  alt: tweet.author_name,
-                                  src: tweet.author_avatar
-                                    ? tweet.author_avatar
-                                    : "/img/theme/avatar-default.jpg"
-                                }
-                              })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "tweet-box col w-auto pl-0" },
-                            [
-                              _c("div", { staticClass: "tweet-title" }, [
-                                _c("h5", [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "text-white fs16",
-                                      attrs: {
-                                        href: "/@" + tweet.author_user_name
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(tweet.author_name))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    { staticClass: "text-muted fs14 ml4" },
-                                    [
-                                      _c("i", { staticClass: "mr4 fs12" }, [
-                                        _vm._v(
-                                          ". " +
-                                            _vm._s(
-                                              _vm.formatTime(tweet.created_at)
-                                            ) +
-                                            " "
+                    { staticClass: "result-box bg-dark-2 pt-2" },
+                    [
+                      _c("transition", { attrs: { name: "profilex" } }, [
+                        _vm.users.length > 0
+                          ? _c(
+                              "div",
+                              { staticClass: "container pt-3 pb-2 bg-dark-1" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "row list-friend" },
+                                  _vm._l(_vm.users, function(friend) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          " col-3 col-md-2 justify-content-center align-items-center"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "g_thumb rounded-circle"
+                                          },
+                                          [
+                                            _c("img", {
+                                              attrs: {
+                                                src: friend.avatar,
+                                                alt: friend.name
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "small",
+                                          { staticClass: "text-muted mt-1" },
+                                          [
+                                            _vm._v(
+                                              "@" + _vm._s(friend.user_name)
+                                            )
+                                          ]
                                         )
-                                      ])
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "tweet-content" },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "tweet-des text-white" },
-                                    [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(tweet.content) +
-                                          "\n                            "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "tweet-hashtag" }, [
-                                    _c(
-                                      "ul",
-                                      { staticClass: "list-hashtag nav" },
-                                      _vm._l(tweet.tags, function(tag, index) {
-                                        return _c("li", { key: index }, [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "hashtag-link text-primary mr4",
-                                              attrs: { href: "#" }
-                                            },
-                                            [_vm._v("#" + _vm._s(tag.tag))]
-                                          )
-                                        ])
-                                      }),
-                                      0
+                                      ]
                                     )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "tweet-action-group fs16 mt-2 d-flex pb-1"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "count_cmt w-25 d-flex align-items-center text-muted"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              ref: "openReplies",
-                                              refInFor: true,
-                                              staticClass:
-                                                "tweet-action-link mr4 text-muted br20_hover",
+                                  }),
+                                  0
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("transition", { attrs: { name: "profilex" } }, [
+                        _vm.tweets.length > 0
+                          ? _c(
+                              "div",
+                              { staticClass: "search-result mt-3" },
+                              _vm._l(_vm.tweets, function(tweet, index) {
+                                return _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "news-feed-item d-flex bg-dark-1 mt-3 pt-2",
+                                    class: tweet.repling
+                                      ? "_replying"
+                                      : "" +
+                                        " tweet-" +
+                                        tweet.id +
+                                        " author-" +
+                                        tweet.author_id
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "user-meta col-auto" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "g_thumb circle" },
+                                          [
+                                            _c("img", {
                                               attrs: {
-                                                href: "javascript:void(0)"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.replies(
-                                                    tweet,
-                                                    index
+                                                alt: tweet.author_name,
+                                                src: tweet.author_avatar
+                                                  ? tweet.author_avatar
+                                                  : "/img/theme/avatar-default.jpg"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "tweet-box col w-auto pl-0"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "tweet-title" },
+                                          [
+                                            _c("h5", [
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "text-white fs16",
+                                                  attrs: {
+                                                    href:
+                                                      "/@" +
+                                                      tweet.author_user_name
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(tweet.author_name)
                                                   )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("svg", [
-                                                _c("use", {
-                                                  attrs: {
-                                                    "xlink:href": "#i-comment"
-                                                  }
-                                                })
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "count fs14 mr-auto"
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(tweet.count_comment)
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "text-muted fs14 ml4"
+                                                },
+                                                [
+                                                  _c(
+                                                    "i",
+                                                    { staticClass: "mr4 fs12" },
+                                                    [
+                                                      _vm._v(
+                                                        ". " +
+                                                          _vm._s(
+                                                            _vm.formatTime(
+                                                              tweet.created_at
+                                                            )
+                                                          ) +
+                                                          " "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
                                               )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "count-retweet w-25 d-flex align-items-center text-muted"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "tweet-action-link mr4 text-muted br20_hover",
-                                              attrs: {
-                                                href: "javascript:void(0)"
-                                              }
-                                            },
-                                            [
-                                              _c("svg", [
-                                                _c("use", {
-                                                  attrs: {
-                                                    "xlink:href": "#i-retweet"
-                                                  }
-                                                })
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            { staticClass: "count fs14" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(tweet.count_retweet)
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "count-like w-25 d-flex align-items-center text-muted"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "tweet-action-link mr4 text-muted position-relative",
-                                              attrs: {
-                                                href: "javascript:void(0)"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.like(tweet)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("div", {
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "tweet-content" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
                                                 staticClass:
-                                                  "heart position-absolute",
-                                                class:
-                                                  tweet.is_like &&
-                                                  tweet.like_status
-                                                    ? "_liked _like_Animation"
-                                                    : tweet.is_like
-                                                    ? "_liked"
-                                                    : ""
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            { staticClass: "count fs14 ml-2" },
-                                            [_vm._v(_vm._s(tweet.count_like))]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "count-share w-25 d-flex align-items-center text-muted"
-                                        },
-                                        [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "tweet-action-link mr4 text-muted br20_hover",
-                                              attrs: {
-                                                href: "javascript:void(0)"
-                                              }
-                                            },
-                                            [
-                                              _c("svg", [
-                                                _c("use", {
-                                                  attrs: {
-                                                    "xlink:href": "#i-share"
+                                                  "tweet-des text-white"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(tweet.content) +
+                                                    "\n                                    "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "tweet-hashtag" },
+                                              [
+                                                _c(
+                                                  "ul",
+                                                  {
+                                                    staticClass:
+                                                      "list-hashtag nav"
+                                                  },
+                                                  _vm._l(tweet.tags, function(
+                                                    tag,
+                                                    index
+                                                  ) {
+                                                    return _c(
+                                                      "li",
+                                                      { key: index },
+                                                      [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            staticClass:
+                                                              "hashtag-link text-primary mr4",
+                                                            attrs: { href: "#" }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "#" +
+                                                                _vm._s(tag.tag)
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  }),
+                                                  0
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "tweet-action-group fs16 mt-2 d-flex pb-1"
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "count_cmt w-25 d-flex align-items-center text-muted"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        ref: "openReplies",
+                                                        refInFor: true,
+                                                        staticClass:
+                                                          "tweet-action-link mr4 text-muted br20_hover",
+                                                        attrs: {
+                                                          href:
+                                                            "javascript:void(0)"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.replies(
+                                                              tweet,
+                                                              index
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("svg", [
+                                                          _c("use", {
+                                                            attrs: {
+                                                              "xlink:href":
+                                                                "#i-comment"
+                                                            }
+                                                          })
+                                                        ])
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "count fs14 mr-auto"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            tweet.count_comment
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "count-retweet w-25 d-flex align-items-center text-muted"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "tweet-action-link mr4 text-muted br20_hover",
+                                                        attrs: {
+                                                          href:
+                                                            "javascript:void(0)"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("svg", [
+                                                          _c("use", {
+                                                            attrs: {
+                                                              "xlink:href":
+                                                                "#i-retweet"
+                                                            }
+                                                          })
+                                                        ])
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "count fs14"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            tweet.count_retweet
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "count-like w-25 d-flex align-items-center text-muted"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "tweet-action-link mr4 text-muted position-relative",
+                                                        attrs: {
+                                                          href:
+                                                            "javascript:void(0)"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.like(
+                                                              tweet
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("div", {
+                                                          staticClass:
+                                                            "heart position-absolute",
+                                                          class:
+                                                            tweet.is_like &&
+                                                            tweet.like_status
+                                                              ? "_liked _like_Animation"
+                                                              : tweet.is_like
+                                                              ? "_liked"
+                                                              : ""
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "count fs14 ml-2"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            tweet.count_like
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "count-share w-25 d-flex align-items-center text-muted"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "tweet-action-link mr4 text-muted br20_hover",
+                                                        attrs: {
+                                                          href:
+                                                            "javascript:void(0)"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("svg", [
+                                                          _c("use", {
+                                                            attrs: {
+                                                              "xlink:href":
+                                                                "#i-share"
+                                                            }
+                                                          })
+                                                        ])
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "count fs14"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            tweet.count_share
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            tweet.repling
+                                              ? _c("reply", {
+                                                  attrs: { tweet_id: tweet.id },
+                                                  on: {
+                                                    closeReplies: function(
+                                                      $event
+                                                    ) {
+                                                      tweet.repling = false
+                                                    }
                                                   }
                                                 })
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            { staticClass: "count fs14" },
-                                            [_vm._v(_vm._s(tweet.count_share))]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  tweet.repling
-                                    ? _c("reply", {
-                                        attrs: { tweet_id: tweet.id },
-                                        on: {
-                                          closeReplies: function($event) {
-                                            tweet.repling = false
-                                          }
-                                        }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    }),
-                    0
+                                              : _vm._e()
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "search-overlay" })
+                    ],
+                    1
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "search-overlay" })
-            ])
-          ])
-    ]
+                ]
+              )
+        ]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -60221,9 +60446,7 @@ var render = function() {
           "div",
           {
             staticClass: "news-feed-item d-flex bg-dark-1 my-2 pt-2",
-            class: tweet.repling
-              ? "_replying"
-              : "" + " tweet-" + tweet.id + " author-" + tweet.author_id
+            class: tweet.repling ? "_replying" : ""
           },
           [
             _c("div", { staticClass: "user-meta col-auto" }, [
@@ -60480,12 +60703,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "position-absolute shadow-sm z100 mt-2 mx-3 r0" },
+    "transition-group",
+    {
+      staticClass: "position-absolute shadow-sm z100 mt-2 mx-3 r0",
+      attrs: { name: "headerx", tag: "div" }
+    },
     _vm._l(_vm.notis, function(noti, index) {
       return _c(
         "div",
         {
+          key: index + 1,
           staticClass: "text-light mb-3 bg-primary p-3 br10 position-relative",
           staticStyle: { "box-sizing": "border-box" }
         },
@@ -60616,56 +60843,66 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.replies, function(reply) {
-        return _c("div", { staticClass: "my-1" }, [
-          _c(
-            "div",
-            { staticClass: "news-feed-item d-flex bg-dark-1 my-1 pt-2 py-2" },
-            [
-              _c("div", { staticClass: "user-meta col-auto" }, [
-                _c("div", { staticClass: "g_thumb circle" }, [
-                  _c("img", {
-                    attrs: { alt: reply.author_name, src: reply.author_avatar }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "tweet-box col w-auto pl-0" }, [
-                _c("div", { staticClass: "tweet-title" }, [
-                  _c("h5", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-white fs16",
-                        attrs: { href: "/@" + reply.author_user_name }
-                      },
-                      [_vm._v(_vm._s(reply.author_name))]
-                    ),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "text-muted fs14 ml4" }, [
-                      _c("i", { staticClass: "mr4 fs12" }, [
-                        _vm._v(
-                          ". " + _vm._s(_vm.formatTime(reply.created_at)) + " "
-                        )
-                      ])
-                    ])
+      _c(
+        "transition-group",
+        { attrs: { name: "headerx", tag: "div" } },
+        _vm._l(_vm.replies, function(reply, index) {
+          return _c("div", { key: index + 1, staticClass: "my-1" }, [
+            _c(
+              "div",
+              { staticClass: "news-feed-item d-flex bg-dark-1 my-1 pt-2 py-2" },
+              [
+                _c("div", { staticClass: "user-meta col-auto" }, [
+                  _c("div", { staticClass: "g_thumb circle" }, [
+                    _c("img", {
+                      attrs: {
+                        alt: reply.author_name,
+                        src: reply.author_avatar
+                      }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "tweet-content" }, [
-                  _c(
-                    "div",
-                    { staticClass: "tweet-des text-white font-weight-light" },
-                    [_vm._v(_vm._s(reply.content))]
-                  )
+                _c("div", { staticClass: "tweet-box col w-auto pl-0" }, [
+                  _c("div", { staticClass: "tweet-title" }, [
+                    _c("h5", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-white fs16",
+                          attrs: { href: "/@" + reply.author_user_name }
+                        },
+                        [_vm._v(_vm._s(reply.author_name))]
+                      ),
+                      _vm._v(" "),
+                      _c("a", { staticClass: "text-muted fs14 ml4" }, [
+                        _c("i", { staticClass: "mr4 fs12" }, [
+                          _vm._v(
+                            ". " +
+                              _vm._s(_vm.formatTime(reply.created_at)) +
+                              " "
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "tweet-content" }, [
+                    _c(
+                      "div",
+                      { staticClass: "tweet-des text-white font-weight-light" },
+                      [_vm._v(_vm._s(reply.content))]
+                    )
+                  ])
                 ])
-              ])
-            ]
-          )
-        ])
-      })
+              ]
+            )
+          ])
+        }),
+        0
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
