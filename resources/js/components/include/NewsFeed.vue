@@ -94,6 +94,7 @@
         </div>
         <infinite-loading
             @infinite="infiniteHandler"
+            spinner="waveDots"
             ref="infiniteLoading">
         </infinite-loading>
     </div>

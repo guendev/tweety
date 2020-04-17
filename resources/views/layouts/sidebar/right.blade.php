@@ -1,6 +1,5 @@
 <div class="col-lg-3 col-md-3 col-sm-3 col-12 sidebar-right">
     <div class="sidebar-right-item position-fixed pr-20">
-        <search></search>
         <your-friends></your-friends>
         {{--<div class="trending-area bg-dark-2 mt20 py-3 br30">
             <h5 class="text-white bbr-dark2 pr-3 ml-3">Your Friends</h5>

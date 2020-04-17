@@ -98,10 +98,14 @@ class ProfileController extends Controller
         {
             return $this->responseError('Update Failed');
         }
-        $Url=[];
-        $Url = $this->saveImg($request, 'avatar' ,$Url);
-        $Url = $this->saveImg($request, 'cover' ,$Url);
-        return $this->responseSuccess('Update Success', $Url);
+        try {
+            $Url=[];
+            $Url = $this->saveImg($request, 'avatar' ,$Url);
+            $Url = $this->saveImg($request, 'cover' ,$Url);
+            return $this->responseSuccess('Update Success', $Url);
+        }catch (\Exception $exception){
+            return $this->responseError('Update Failed');
+        }
     }
 
     /**

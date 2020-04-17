@@ -12,7 +12,7 @@
                     v-if="msg && completed === false"
                     class="small text-danger text-center mt-n3 mb-1"
                 >{{ msg }}</p>
-                <form v-if="!completed" @submit.prevent="submitRegister()">
+                <form v-if="!completed" id="register-form" @submit.prevent="submitRegister($event.target.id)">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <input
@@ -74,11 +74,22 @@
                         </div>
                     </div>
                     <button
-                        type="submit" class="btn btn-primary br10 px-3 py-2 btn-block"
+                        type="submit" class="btn btn-primary br10 px-3 py-2 btn-block position-relative"
                         :disabled="name==='' || user_name==='' || email ==='' || pass ==='' || repass==='' || repass !== pass"
                         :class="name==='' || user_name==='' || email ==='' || pass ==='' || repass ==='' || repass !== pass ? 'btn-dark' : 'btn-primary'"
                     >
-                        Register Account
+                        <span>Register Account</span>
+                        <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                        <span class="ra-center upsuccess d-flex justify-content-center align-items-center">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                        <span class="ra-center upfailed d-flex justify-content-center align-items-center">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
                     </button>
                 </form>
                 <div v-else class="d-flex flex-column justify-content-center align-items-center">
@@ -111,6 +122,7 @@
 </template>
 
 <script>
+    import UploadUi from "../../../utils/UploadUi";
     export default {
         name: "Register",
         data() {
@@ -126,17 +138,21 @@
             }
         },
         methods: {
-            submitRegister(){
+            submitRegister($id){
+                let $el = UploadUi.addClassBeforeProcess('#'+$id);
                 axios.post('api/register', {
                     name: this.name,
                     user_name: this.user_name,
                     email: this.email,
                     pass: this.pass
                 }).then(({ data }) => {
+                    UploadUi.uploadProcess(data.error, $el);
                     if (data.error){
                         this.msg = data.msg
                     } else {
-                        this.completed = true;
+                        setTimeout(()=> {
+                            this.completed = true;
+                        }, 1000)
                     }
                 })
             }
@@ -147,5 +163,18 @@
 <style scoped>
     .reset-form-control, .reset-form-control:hover, .reset-form-control:focus {
         background: #e9f0fe;
+    }
+
+    button[type="submit"]{
+        height: 41px;
+    }
+    button[type="submit"]>span:first-child~* {
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+    }
+
+    .loading .effect-1, .loading .effect-2, .loading .effect-3 {
+        border-left: 3px solid #f6f7f9;
     }
 </style>

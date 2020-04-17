@@ -6,7 +6,7 @@
                     <form
                         id="formImg"
                         enctype="multipart/form-data"
-                        @submit.prevent="submitImg()"
+                        @submit.prevent="submitImg($event)"
                     >
                     <label for="cover" class="cover-overlay">
                         <svg class="ra-center text-light fs24 z1"><use xlink:href="#i-camera"></use></svg>
@@ -61,8 +61,21 @@
                                 v-if="formImg.avatar !== undefined || formImg.cover !== undefined"
                                 form="formImg"
                                 type="submit"
-                                class="btn btn-outline-primary mt-2 font-weight-bold text-primary br30 ml-2"
-                            >Upload</button>
+                                class="btn btn-outline-primary position-relative mt-2 font-weight-bold text-primary br30 ml-2"
+                            >
+                                <span>Upload</span>
+                                <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                                <span class="ra-center upsuccess">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                                <span class="ra-center upfailed">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
+                            </button>
                           <button
                               v-else
                               @click="back()"
@@ -74,8 +87,9 @@
 
                     <form
                         class="needs-validation col-12 mt-3"
+                        id="formInfo"
                         novalidate
-                        @submit.prevent="submitProfile(2)"
+                        @submit.prevent="submitProfile($event)"
                     >
                         <div class="form-row">
                             <div class="col-md-8 mb-3">
@@ -160,14 +174,28 @@
                             </div>
                         </div>
                         <button
-                            class="btn btn-outline-primary font-weight-bold text-primary br30 float-right clearfix"
+                            class="btn btn-outline-primary position-relative font-weight-bold text-primary br30 float-right clearfix"
                             type="submit"
-                        >Update Your Info</button>
+                        >
+                            <span>Update Your Info</span>
+                            <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                            <span class="ra-center upsuccess">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                            <span class="ra-center upfailed">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
+                        </button>
                     </form>
 
                     <form
                         class="col-12 mt-3"
-                        @submit.prevent="submitPassword()"
+                        @submit.prevent="submitPassword($event)"
+                        id="formPass"
                     >
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
@@ -201,8 +229,27 @@
                                 >
                             </div>
                         </div>
-                        <button class="btn btn-outline-primary font-weight-bold text-primary br30 float-right clearfix" type="submit">Update Password</button>
+                        <button
+                            class="btn btn-outline-primary font-weight-bold position-relative text-primary br30 float-right clearfix"
+                            type="submit"
+                            :disabled="formPass.oldPass === '' || formPass.newPass ==='' || formPass.newPass !== formPass.rePass"
+                        >
+                            <span>Update Your Password</span>
+                            <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                            <span class="ra-center upsuccess">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                            <span class="ra-center upfailed">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
+                        </button>
                     </form>
+                    <div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -211,38 +258,33 @@
 
 <script>
     import Form from "../../support/Form";
-
-   export default {
+    import UploadUi from "../../utils/UploadUi";
+    export default {
         name: "form-edit-profile",
         props: ['userid', 'is_edit'],
         data() {
+            let spreadElements = {
+                id: this.userid,
+                name: '',
+                user_name: '',
+                email: '',
+                avatar: '',
+                cover: '',
+                story: '',
+                sex: '',
+                local: ''
+            };
             return {
                 form: '',
                 sexs: ['Boy', 'Girl', 'LGBT'],
                 formHasChange: true,
                 user: this.userid,
                 user_data: {
-                    id: this.userid,
-                    name: '',
-                    user_name:'',
-                    email: '',
-                    avatar: '',
-                    cover: '',
-                    story: '',
-                    sex: '',
-                    local: ''
+                    ...spreadElements
                 },
                 formImg: new FormData(),
                 formData: {
-                    id: this.userid,
-                    name: '',
-                    user_name:'',
-                    email: '',
-                    story: '',
-                    sex: '',
-                    local: '',
-                    cover: '',
-                    avatar: ''
+                    ...spreadElements
                 },
                 formPass: new Form( {
                     oldPass: '',
@@ -257,30 +299,35 @@
           back(){
               this.$emit('back', this.user_data)
           },
-          submitProfile(){
+          submitProfile($event){
+              let $el = UploadUi.addClassBeforeProcess('#'+$event.target.id);
               axios.post('update-profile', {
                   params: {
                       data: this.formData
                   }
               }).then(({ data }) => {
+                  UploadUi.uploadProcess(data.error, $el);
                   this.user_data = data.data;
                   this.formData = data.data;
               })
           },
-            submitPassword(){
-              this.formPass.post('changePass')
-                  .then(response => {
-                  console.log('Change Pass')
-              })
+            submitPassword($event){
+                let $el = UploadUi.addClassBeforeProcess('#'+$event.target.id);
+                this.formPass.post('changePass')
+                  .then(({ data }) => {
+                      UploadUi.uploadProcess(data.error, $el);
+                  })
             },
 
 
-            submitImg(){
-                axios.post('changeProfileImg',
-                    this.formImg
-                ).then(response => {
-                    this.formData.avatar = response.data.data.avatar === undefined ? this.user_data.avatar : response.data.data.avatar;
-                    this.formData.cover = response.data.data.cover === undefined ? this.user_data.cover : response.data.data.cover;
+            submitImg($event){
+                let $el = UploadUi.addClassBeforeProcess('#'+$event.target.id);
+                axios.post('changeProfileImg', this.formImg)
+                    .then(({ data }) => {
+                        UploadUi.uploadProcess(data.error, $el);
+                        this.formData.avatar = data.data.avatar === undefined ? this.user_data.avatar : data.data.avatar;
+                        this.formData.cover = data.data.cover === undefined ? this.user_data.cover : data.data.cover;
+                        this.formImg.avatar = this.formImg.cover = undefined;
                 })
             },
 
@@ -319,5 +366,13 @@
     }
     .profile-action:before {
         margin-top: 0.5rem;
+    }
+
+    .loading {
+        width: 32px;
+        height: 32px;
+    }
+    .btn{
+        height: 37px;
     }
 </style>

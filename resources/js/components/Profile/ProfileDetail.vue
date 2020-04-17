@@ -120,6 +120,7 @@
     </transition>
 </template>
 
+
 <script>
     import moment from "moment";
     import { eventBus } from "../../app";

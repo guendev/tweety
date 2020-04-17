@@ -12,7 +12,8 @@
             <div class="tweet-box col w-auto pl-0 mt-2">
                 <form
                     method="post"
-                    @submit.prevent="submitReply()"
+                    class="submitReply"
+                    @submit.prevent="submitReply($event)"
                 >
                 <textarea
                     name="content"
@@ -23,8 +24,21 @@
                 ></textarea>
                     <button
                         type="submit"
-                        class="btn btn-primary px-2 py-1 br30 ml-auto text-white fs12 float-right clearfix"
-                    >Reply</button>
+                        class="btn btn-primary position-relative px-2 py-1 br30 ml-auto text-white fs12 float-right clearfix"
+                    >
+                        <span>Reply</span>
+                        <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                        <span class="ra-center upsuccess">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                        <span class="ra-center upfailed">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
+                    </button>
                     <a
                         class="btn bg-dark px-2 py-1 br30 ml-auto text-white fs12 float-right clearfix mr-2"
                         @click="$emit('closeReplies')"
@@ -75,6 +89,7 @@
 
 <script>
     import moment from "moment";
+    import UploadUi from "../../utils/UploadUi";
     export default {
         name: "Reply",
         props:['tweet_id'],
@@ -106,11 +121,15 @@
             formatTime($time){
                 return moment($time).format("MM-DD-YYYY")
             },
-            submitReply(){
+            submitReply($event){
+                console.log($event);
+                let $el = UploadUi.addClassBeforeProcess('.'+$event.target.className);
+                console.log($el);
                 axios.post('/post-reply', {
                     content: this.form.content,
                     tweet_id: this.tweet_id
-                }).then(() => {
+                }).then(({ data }) => {
+                    UploadUi.uploadProcess(data.error, $el);
                     this.replies.unshift({
                         author_avatar: this.current_user.avatar,
                         author_name: this.current_user.name,
@@ -126,5 +145,7 @@
 </script>
 
 <style scoped>
-
+    .btn[type="submit"]{
+        height: 29px
+    }
 </style>

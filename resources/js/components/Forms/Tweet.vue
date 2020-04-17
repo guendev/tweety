@@ -8,7 +8,8 @@
         <div class="tweet-box col w-auto pl-0">
             <form
                 method="post"
-                @submit.prevent="onSubmit"
+                id="tweet-form"
+                @submit.prevent="onSubmit($event.target.id)"
             >
                 <textarea
                     name="content"
@@ -29,8 +30,21 @@
                     </a>
                     <button
                         type="submit"
-                        class="btn btn-primary px-3 py-1 br30 ml-auto text-white fs14"
-                    >Tweet</button>
+                        class="btn btn-primary px-3 py-1 br30 ml-auto text-white position-relative fs14"
+                    >
+                        <span>Tweet</span>
+                        <span class="d-block loading">
+                                <span class="effect-1 effects"></span>
+                                <span class="effect-2 effects"></span>
+                                <span class="effect-3 effects"></span>
+                            </span>
+                        <span class="ra-center upsuccess d-flex justify-content-center align-items-center">
+                                <svg><use xlink:href="#i-check"></use></svg>
+                            </span>
+                        <span class="ra-center upfailed d-flex justify-content-center align-items-center">
+                                <svg><use xlink:href="#i-close"></use></svg>
+                            </span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -40,7 +54,7 @@
 
 <script>
     import { eventBus } from "../../app";
-
+    import UploadUi from "../../utils/UploadUi";
     export default {
         name: "Tweet",
         props: ['avatar'],
@@ -54,11 +68,13 @@
         },
 
         methods: {
-            onSubmit(){
+            onSubmit($id){
+                let $el = UploadUi.addClassBeforeProcess('#'+$id);
                 axios.post('tweet/'+window.__user_id__, {
                     content: this.form.content
                 })
                     .then( ({ data }) => {
+                        UploadUi.uploadProcess(data.error, $el);
                         if (data.error){
                             eventBus.$emit('noti', {
                                 title: data.msg,

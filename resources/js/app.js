@@ -7,7 +7,6 @@ export const eventBus = new Vue();
 
 Vue.component('tweet-form', require('./components/Forms/Tweet').default);
 Vue.component('profile-action', require('./components/Profile/ProfileAction').default);
-Vue.component('search', require('./components/include/search').default);
 Vue.component('new-feeds', require('./components/include/NewsFeed').default);
 Vue.component('profile-detail', require('./components/Profile/ProfileDetail').default);
 Vue.component('form-edit-profile', require('./components/Profile/EditProfile').default);
