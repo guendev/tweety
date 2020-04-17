@@ -147,7 +147,7 @@
 <style scoped>
     .btn[type="submit"]{
         height: 29px;
-        min-width: 48.5px;
+        min-width: 49px;
     }
     .loading {
         height: 20px;
