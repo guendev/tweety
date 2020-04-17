@@ -11,6 +11,6 @@ function current_user(){
  * @return string
  */
 function web_asset($urlString) {
-    $v = '1';
+    $v = '2';
     return asset($urlString) . '?v=' . $v;
 }

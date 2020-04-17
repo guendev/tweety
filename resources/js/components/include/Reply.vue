@@ -146,6 +146,14 @@
 
 <style scoped>
     .btn[type="submit"]{
-        height: 29px
+        height: 29px;
+        min-width: 48.5px;
+    }
+    .loading {
+        height: 20px;
+        width: 20px;
+    }
+    .loading .effect-1, .loading .effect-2, .loading .effect-3 {
+        border-left: 3px solid #ffffff;
     }
 </style>
