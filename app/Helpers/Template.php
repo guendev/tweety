@@ -14,3 +14,4 @@ function web_asset($urlString) {
     $v = '2';
     return asset($urlString) . '?v=' . $v;
 }
+
