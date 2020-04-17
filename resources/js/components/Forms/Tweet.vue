@@ -95,5 +95,11 @@
 </script>
 
 <style scoped>
-
+    span.loading {
+        width: 30px;
+        height: 30px;
+    }
+    .loading .effect-1, .loading .effect-2, .loading .effect-3 {
+        border-left: 3px solid #ffffff;
+    }
 </style>

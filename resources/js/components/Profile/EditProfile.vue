@@ -6,7 +6,7 @@
                     <form
                         id="formImg"
                         enctype="multipart/form-data"
-                        @submit.prevent="submitImg($event)"
+                        @submit.prevent="submitImg()"
                     >
                     <label for="cover" class="cover-overlay">
                         <svg class="ra-center text-light fs24 z1"><use xlink:href="#i-camera"></use></svg>
@@ -320,14 +320,12 @@
             },
 
 
-            submitImg($event){
-                let $el = UploadUi.addClassBeforeProcess('#'+$event.target.id);
+            submitImg(){
                 axios.post('changeProfileImg', this.formImg)
                     .then(({ data }) => {
                         UploadUi.uploadProcess(data.error, $el);
                         this.formData.avatar = data.data.avatar === undefined ? this.user_data.avatar : data.data.avatar;
                         this.formData.cover = data.data.cover === undefined ? this.user_data.cover : data.data.cover;
-                        this.formImg.avatar = this.formImg.cover = undefined;
                 })
             },
 
