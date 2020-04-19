@@ -1,5 +1,5 @@
 <template>
-    <transition v-if="!is_editting && user_can" name="profilex">
+    <transition v-if="is_editting && user_can" name="profilex">
         <form-edit-profile
             :userid="user_data.id"
             :is_edit="is_editting"
