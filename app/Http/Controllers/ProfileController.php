@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -98,26 +99,33 @@ class ProfileController extends Controller
         {
             return $this->responseError('Update Failed');
         }
-        try {
+        /*try {*/
             $Url=[];
-            $Url = $this->saveImg($request, 'avatar' ,$Url);
-            $Url = $this->saveImg($request, 'cover' ,$Url);
+            $Url = $this->saveImg($request, 'avatar' ,$Url, 200);
+            $Url = $this->saveImg($request, 'cover' ,$Url, 617);
             return $this->responseSuccess('Update Success', $Url);
-        }catch (\Exception $exception){
+        /*}catch (\Exception $exception){
             return $this->responseError('Update Failed');
-        }
+        }*/
     }
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string $type
      * @param array $Url
+     * @param int $width
      * @return array
      */
-    public function saveImg(Request $request, string $type , array $Url): array
+    public function saveImg(Request $request, string $type , array $Url, int $width): array
     {
         if (isset($request[$type]) && $request->validate([$type => ['required', 'file']])) {
-            $Url[$type] = $request[$type]->store($type.'s');
+            $directory = 'img/'.$type.'/';
+            $fileName = rand(0, 9999999). time() .'_'. $type . '.jpg';
+            $Url[$type] = $directory.$fileName;
+            Image::make($request[$type])->encode('jpg')->resize($width, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($Url[$type]);
+            //$Url[$type] = $request[$type]->store($type.'s');
             current_user()->$type = $Url[$type];
             current_user()->save();
         }
